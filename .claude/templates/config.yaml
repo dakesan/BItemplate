@@ -1,48 +1,19 @@
-# Experiment Configuration
-# File: [DATE]_Exp[EXP_NUMBER]_[DESCRIPTION].yaml
-#
-# Action required: Save this file as config/YYYYMMDD_Exp[NN]_[description].yaml
-# Example: config/20251008_Exp01_quality-control.yaml
-#
-# Note: Lines marked with [BRACKETS] must be replaced. Lines without brackets are template structure.
+# Experiment Configuration Template
+# Save as: config/YYYYMMDD_Exp##_description.yaml
 
 experiment:
-  id: "Exp[EXP_NUMBER]"
-  date: "[DATE]"
-  description: "[DESCRIPTION]"
+  id: "Exp##"
+  date: "YYYY-MM-DD"
+  description: "Brief description"
 
-# Analysis parameters
-# Action required: Fill in or adjust these parameters for your analysis
 parameters:
-  threads: [THREADS]
-  memory_gb: [MEMORY]
-  # Action required: Add more parameters as needed (remove these comments)
-  # min_quality: [VALUE]
-  # min_coverage: [VALUE]
+  threads: 16
+  memory_gb: 64
 
-# File paths
-# Action required: Fill in all paths. Output path format is fixed.
 paths:
-  input: "[INPUT_PATH]"
-  output: "results/Exp[EXP_NUMBER]_[DESCRIPTION]"
-  # Action required: Add reference path if needed (optional, remove if not needed)
-  # reference: "[REFERENCE_PATH]"
+  input: "data/raw/"
+  output: "results/Exp##_description"
 
-# Tool-specific settings
-# Action required: Add configurations for each tool you use
-# Note: You can add multiple tools by copying this structure
 tools:
-  [TOOL1]:
-    version: "[VERSION]"
-    # Action required: Add tool-specific parameters (remove these comments)
-    # [PARAM1]: [VALUE1]
-    # [PARAM2]: [VALUE2]
-
-# Sample information
-# Action required: Fill in if analyzing multiple samples. Remove this entire section if not needed.
-# Note: Each sample should have id and group fields at minimum
-samples:
-  - id: "[SAMPLE1]"
-    group: "[GROUP1]"
-  - id: "[SAMPLE2]"
-    group: "[GROUP2]"
+  tool_name:
+    version: "x.y.z"
