@@ -79,8 +79,15 @@ When done, create `notebook/report/Exp##_*.md`:
 Use slash commands to manage experiments:
 
 - `/exp-plan` - Create new experiment labnote
+- `/exp-clarify` - Clarify experiment plan through interactive Q&A (recommended after plan)
 - `/exp-update-labnote` - Update existing labnote with results
 - `/exp-report` - Create analysis report from experiments
+
+Recommended workflow:
+1. `/exp-plan` - Create initial plan
+2. `/exp-clarify` - Resolve ambiguities (especially input/output paths)
+3. Execute experiment and `/exp-update-labnote` as you go
+4. `/exp-report` - Summarize findings when complete
 
 Templates are stored in `.claude/templates/`:
 - `labnote.md` - Experiment log template
@@ -129,18 +136,67 @@ Config: config/20251008_Exp01_qc.yaml
 
 Template available at `.claude/templates/config.yaml`
 
+## Project Configuration
+
+Project-wide settings in `pyproject.toml`:
+
+```toml
+[tool.bioinfo-experiment.compute]
+total_cores = 128
+total_memory_gb = 512
+default_cores = 90        # 70% of total
+default_memory_gb = 358   # 70% of total
+
+[tool.bioinfo-experiment.paths]
+data_root = "data"
+raw_data = "data/raw"
+results_root = "results"
+```
+
+Experiments use 70% of server capacity by default (90 cores, 358GB RAM).
+Override per-experiment in `config/YYYYMMDD_Exp##_*.yaml` if needed.
+
 ## Environment Management
+
+### Python Environment (uv)
 
 Use `uv` for Python package management:
 
 ```bash
-# Edit pyproject.toml to add dependencies
-# Then sync
+# Install/update dependencies
 uv sync
 
-# Activate
-source .venv/bin/activate
+# Run Python scripts (recommended - no need to activate venv)
+uv run python scripts/analysis.py
+uv run jupyter lab
+
+# Add dependencies: edit pyproject.toml, then
+uv sync
 ```
+
+**Important**: Use `uv run` instead of activating venv manually for better reproducibility.
+
+### Conda-dependent Tools (Snakemake)
+
+For bioinformatics tools requiring conda (e.g., samtools, bwa, GATK):
+
+```bash
+# Use Snakemake with conda integration
+snakemake --use-conda --cores 90
+
+# Snakemake automatically manages conda environments per rule
+# Define environments in Snakefile:
+# rule align:
+#     conda: "envs/alignment.yaml"
+#     shell: "bwa mem ..."
+```
+
+Benefits:
+- Isolated conda environments per tool
+- Reproducible tool versions
+- Automatic environment caching
+
+See: https://snakemake.readthedocs.io/en/stable/snakefiles/deployment.html
 
 ## Git Workflow
 
