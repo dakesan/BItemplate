@@ -6,13 +6,13 @@ Date: [DATE]
 
 ## Configuration
 
-**Action required**: Fill in config file reference. Format: config/YYYYMMDD_Exp[NN]_[description].yaml
+**Action required**: Fill in config file reference if applicable. Format: config/YYYYMMDD_Exp[NN]_[description].yaml
 
-Config: config/[DATE]_Exp[EXP_NUMBER]_[DESCRIPTION].yaml
+Config: config/[DATE]_Exp[EXP_NUMBER]_[DESCRIPTION].yaml (optional)
 
 ## Objective
 
-**Action required**: Describe what you want to do (1-3 sentences) and why you want to do it (1-2 sentences).
+**Action required**: Briefly describe what you want to achieve and why (2-3 sentences).
 
 [OBJECTIVE]
 
@@ -32,75 +32,139 @@ Config: config/[DATE]_Exp[EXP_NUMBER]_[DESCRIPTION].yaml
 
 ---
 
-**Note**: The Process section below is filled in as you work. Each step should include:
-1. What you did (action)
-2. Why you did it (thought)
-3. How you did it (command)
-4. What happened (result)
+## Trial 1 - [SUBTITLE]
 
-Keep it simple and factual. Add or remove steps as needed.
+**Action required**: Replace [SUBTITLE] with a brief description of this trial (e.g., "Initial parameter exploration", "SAM-based pseudo-labeling").
 
----
+### Plan
 
-## Process
+**Action required**: Briefly outline approach for this trial (3-5 bullet points).
 
-### Step 1: [ACTION]
+- [STEP1]
+- [STEP2]
+- [STEP3]
 
-**Action required**: Replace [ACTION] with a brief verb phrase (e.g., "Quality control", "Filter reads", "Align sequences").
+### Methods
 
-[THOUGHT]
+**Action required**: Document what you actually executed. Add or remove steps as needed. Do not write a whole python code here. All codes should be written in src or script directory. What should be noteed here is the running command to invoke those codes in src or sctript.
 
-```bash
-[COMMAND]
-```
+#### Step 1: [ACTION]
 
-Result: [RESULT]
-
-### Step 2: [ACTION]
-
-**Action required**: Add more steps by copying this template. Each step follows the same format.
-
-[THOUGHT]
+**Why**: [RATIONALE - why this approach was chosen or why it differs from plan]
 
 ```bash
-[COMMAND]
+[ACTUAL_COMMAND]
 ```
 
-Result: [RESULT]
+**Parameters**:
+- [PARAM1]: [VALUE] - [EXPLANATION]
+- [PARAM2]: [VALUE] - [EXPLANATION]
 
----
+#### Step 2: [ACTION]
 
-**Note**: Fill in the following sections after completing your experiment.
+**Why**: [RATIONALE]
 
----
+```bash
+[ACTUAL_COMMAND]
+```
 
-## Results Summary
+**Parameters**:
+- [PARAM1]: [VALUE] - [EXPLANATION]
 
-**Action required**: List key findings as bullet points (3-5 points). Focus on numbers and facts. Include figures if relevant.
+### Results
+
+**Action required**: List key findings from this trial (3-5 bullet points). Focus on numbers and observations.
 
 - [FINDING1]
 - [FINDING2]
 - [FINDING3]
 
-### Key Figures
+**Key Figures**:
 
-**Action required**: Include key figures from analysis. All figures should be saved as PNG in the results directory.
+![Figure 1: [DESCRIPTION]](results/Exp[EXP_NUMBER]_[DESCRIPTION]/trial1_[figure1.png])
 
-![Figure 1: [DESCRIPTION]](results/Exp[EXP_NUMBER]_[DESCRIPTION]/[figure1.png])
+### Discussion
 
-![Figure 2: [DESCRIPTION]](results/Exp[EXP_NUMBER]_[DESCRIPTION]/[figure2.png])
+#### Interpretation
 
-## Next Steps
+[How do you interpret the results? What worked? What didn't?]
 
-**Action required**: List what needs to be done next (1-3 items).
+#### Problems & Limitations
+
+[What issues were encountered? What could be improved?]
+
+#### Next Steps
 
 - [NEXT_STEP1]
 - [NEXT_STEP2]
 
 ---
 
+## Trial 2 - [SUBTITLE]
+
+**Action required**: Copy the Trial template above for additional trials. Each trial should have its own Plan/Methods/Results/Discussion.
+
+### Plan
+
+- [STEP1]
+- [STEP2]
+
+### Methods
+
+#### Step 1: [ACTION]
+
+**Why**: [RATIONALE]
+
+```bash
+[ACTUAL_COMMAND]
+```
+
+**Parameters**:
+- [PARAM1]: [VALUE]
+
+### Results
+
+- [FINDING1]
+- [FINDING2]
+
+### Discussion
+
+#### Interpretation
+
+[INTERPRETATION]
+
+#### Problems & Limitations
+
+[PROBLEMS]
+
+#### Next Steps
+
+- [NEXT_STEP1]
+
+---
+
+## Overall Summary
+
+**Action required**: Fill in after completing all trials. Summarize key learnings across trials.
+
+### Key Findings
+
+- [OVERALL_FINDING1]
+- [OVERALL_FINDING2]
+
+### Conclusions
+
+[What did you learn from this experiment? What approach works best?]
+
+### Recommended Next Experiment
+
+[What should Exp[NEXT_NUMBER] focus on?]
+
+---
+
 ## Notes
 
-**Action required**: Add any additional observations, issues, or unexpected findings. This section is optional.
+**Action required**: Add any additional observations, unexpected findings, or technical details. This section is optional.
 
 [NOTES]
+
