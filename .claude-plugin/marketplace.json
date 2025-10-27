@@ -1,0 +1,24 @@
+{
+  "name": "bioinformatics-template-marketplace",
+  "owner": {
+    "name": "BItemplate",
+    "email": "26640737+dakesan@users.noreply.github.com"
+    
+  },
+  "plugins": [
+    {
+      "name": "bioinformatics-experiment",
+      "description": "Manage bioinformatics experiment workflows - planning, clarification, execution tracking, and reporting. Provides structured workflows for AI-first reproducible research.",
+      "version": "1.0.0",
+      "source": "./plugins/bioinformatics-experiment",
+      "keywords": [
+        "bioinformatics",
+        "experiment",
+        "workflow",
+        "research",
+        "labnote",
+        "reproducibility"
+      ]
+    }
+  ]
+}
