@@ -18,8 +18,8 @@ From arguments or ask user:
 ### 2. Load Context
 
 - Read `pyproject.toml` section `[tool.bioinfo-experiment.compute]` for default resources
-- Find labnote: `notebook/labnote/Exp##_*.md`
-- If labnote not found, instruct user to run exp-plan first
+- Find labnote: `docs/markdown/Exp##_*.md` or `docs/markdown/YYYYMMDD_*.md`
+- If labnote not found, instruct user to run Experiment Planning Workflow first
 
 ### 3. Perform Coverage Scan
 
@@ -157,7 +157,7 @@ Save file immediately after each integration (atomic write)
 ✓ Clarification complete for Exp##
 
 Questions answered: X/5
-Labnote updated: notebook/labnote/Exp##_description.md
+Labnote updated: docs/markdown/Exp##_description.md
 
 Sections modified:
 - Input Data (path, format, scale specified)

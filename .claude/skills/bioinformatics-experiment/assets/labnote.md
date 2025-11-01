@@ -1,147 +1,170 @@
----
-cdate: [DATE_YYYY-MM-DD]
-mdate: [DATE_YYYY-MM-DD]
-tags: [labnote, [TAG1]]
-status: in-progress
-author: [AUTHOR]
----
+# Exp[EXP_NUMBER]: [TITLE]
 
->[!Todo] Background
->- [BACKGROUND]
->- 試験ID（ある場合）: [TRIAL_ID]
->- 目的: [OBJECTIVE]
+**Action required**: Fill in [EXP_NUMBER] (zero-padded, e.g., 01, 02), [TITLE], and [DATE] (YYYY-MM-DD format).
 
->[!Works] Purpose
->- [PURPOSE]
->- [HYPOTHESIS]
+Date: [DATE]
 
->[!Done] Results Summary
->- 主要な実験結果のサマリー
->- 重要な知見を箇条書きで記載
->- 表やグラフを用いて結果を整理
->
->**主要な知見:**
->1. 知見1
->2. 知見2
->3. 知見3
+## Configuration
 
->[!Important] Key Points
->**技術的注意事項:**
->- 実験上の重要なポイント
->- プロトコルで特に注意すべき点
->- 安全装備や装置設定の注意事項
+**Action required**: Fill in config file reference if applicable. Format: config/YYYYMMDD_Exp[NN]_[description].yaml
 
-## Experimental Timeline
+Config: config/[DATE]_Exp[EXP_NUMBER]_[DESCRIPTION].yaml (optional)
 
-実験の時系列を記載：
+## Objective
 
-| Exp | 実施日 | 実験名 | 主要な結果 |
-|-----|--------|--------|------------|
-| Exp1 | [DATE_YYYY-MM-DD] | [EXP_NAME] | 簡潔な結果 |
-| Exp2 | [DATE_YYYY-MM-DD] | [EXP_NAME] | 簡潔な結果 |
+**Action required**: Briefly describe what you want to achieve and why (2-3 sentences).
+
+[OBJECTIVE]
+
+## Tools & Versions
+
+**Action required**: List all tools with exact versions. Add or remove lines as needed.
+
+- [TOOL1]: [VERSION]
+- [TOOL2]: [VERSION]
+
+## Data
+
+**Action required**: Specify exact input and output paths.
+
+- Input: [INPUT_PATH]
+- Output: results/Exp[EXP_NUMBER]_[DESCRIPTION]/
 
 ---
 
-## Exp1 ([DATE_YYYY-MM-DD]): [EXP_TITLE]
+## Trial 1 - [SUBTITLE]
 
-### Purpose
-- [EXP_PURPOSE]
-- [HYPOTHESIS]
+**Action required**: Replace [SUBTITLE] with a brief description of this trial (e.g., "Initial parameter exploration", "SAM-based pseudo-labeling").
 
-### Materials
+### Plan
 
-**使用プラスミド/細胞**
-- [PLASMID_1]
-- [PLASMID_2]
+**Action required**: Briefly outline approach for this trial (3-5 bullet points).
 
-**使用試薬**
-- [REAGENT_1]
-  - [COMPONENT_1]
-  - [COMPONENT_2]
-- [REAGENT_2]
+- [STEP1]
+- [STEP2]
+- [STEP3]
 
-**使用装置**
-- [EQUIPMENT_1]
-- [EQUIPMENT_2]
+### Methods
 
-### Procedure
+**Action required**: Document what you actually executed. Add or remove steps as needed. Do not write a whole python code here. All codes should be written in src or script directory. What should be noteed here is the running command to invoke those codes in src or sctript.
 
-**準備作業**
-- [PREP_STEP_1]
-- [PREP_STEP_2]
+#### Step 1: [ACTION]
 
-**実施内容**
-1. [STEP_1]
-2. [STEP_2]
-3. [STEP_3]
+**Why**: [RATIONALE - why this approach was chosen or why it differs from plan]
+
+```bash
+[ACTUAL_COMMAND]
+```
+
+**Parameters**:
+- [PARAM1]: [VALUE] - [EXPLANATION]
+- [PARAM2]: [VALUE] - [EXPLANATION]
+
+#### Step 2: [ACTION]
+
+**Why**: [RATIONALE]
+
+```bash
+[ACTUAL_COMMAND]
+```
+
+**Parameters**:
+- [PARAM1]: [VALUE] - [EXPLANATION]
 
 ### Results
 
-**測定結果（測定日時）**
+**Action required**: List key findings from this trial (3-5 bullet points). Focus on numbers and observations.
 
-| サンプル | 測定値1 | 測定値2 | 測定値3 |
-|---------|---------|---------|---------|
-| Sample1 | value   | value   | value   |
-| Sample2 | value   | value   | value   |
+- [FINDING1]
+- [FINDING2]
+- [FINDING3]
 
-**観察事項:**
-- [OBSERVATION_1]
-- [OBSERVATION_2]
+**Key Figures**:
+
+![Figure 1: [DESCRIPTION]](results/Exp[EXP_NUMBER]_[DESCRIPTION]/trial1_[figure1.png])
 
 ### Discussion
 
-**結果の解釈:**
-- [INTERPRETATION_1]
-- [INTERPRETATION_2]
+#### Interpretation
 
-**問題点と改善策:**
-- [PROBLEM_1] → [SOLUTION_1]
-- [PROBLEM_2] → [SOLUTION_2]
+[How do you interpret the results? What worked? What didn't?]
 
-**Next Steps:**
-- [NEXT_STEP_1]
-- [NEXT_STEP_2]
+#### Problems & Limitations
 
-**作業者**: [OPERATOR_1], [OPERATOR_2]
+[What issues were encountered? What could be improved?]
 
----
+#### Next Steps
 
-## Exp2 ([DATE_YYYY-MM-DD]): [EXP_TITLE]
-
-（同様の構造で記載）
+- [NEXT_STEP1]
+- [NEXT_STEP2]
 
 ---
 
-## 総合考察と結論
+## Trial 2 - [SUBTITLE]
 
-### 主要な発見
+**Action required**: Copy the Trial template above for additional trials. Each trial should have its own Plan/Methods/Results/Discussion.
 
-1. **[FINDING_1_TITLE]**
-   - [FINDING_1_DETAIL]
+### Plan
 
-2. **[FINDING_2_TITLE]**
-   - [FINDING_2_DETAIL]
+- [STEP1]
+- [STEP2]
 
-### 今後の方向性
+### Methods
 
-**最優先課題:**
-1. [PRIORITY_1]
-2. [PRIORITY_2]
+#### Step 1: [ACTION]
 
-**短期的課題（1-3ヶ月）:**
-1. [SHORT_TERM_1]
-2. [SHORT_TERM_2]
+**Why**: [RATIONALE]
 
-**中長期的展望（3ヶ月以上）:**
-1. [LONG_TERM_1]
-2. [LONG_TERM_2]
+```bash
+[ACTUAL_COMMAND]
+```
 
-### 最終推奨事項
+**Parameters**:
+- [PARAM1]: [VALUE]
 
-**現時点での推奨:**
-- [RECOMMENDATION_1]
-- [RECOMMENDATION_2]
+### Results
 
-**避けるべき方法:**
-- [AVOID_1]
-- [AVOID_2]
+- [FINDING1]
+- [FINDING2]
+
+### Discussion
+
+#### Interpretation
+
+[INTERPRETATION]
+
+#### Problems & Limitations
+
+[PROBLEMS]
+
+#### Next Steps
+
+- [NEXT_STEP1]
+
+---
+
+## Overall Summary
+
+**Action required**: Fill in after completing all trials. Summarize key learnings across trials.
+
+### Key Findings
+
+- [OVERALL_FINDING1]
+- [OVERALL_FINDING2]
+
+### Conclusions
+
+[What did you learn from this experiment? What approach works best?]
+
+### Recommended Next Experiment
+
+[What should Exp[NEXT_NUMBER] focus on?]
+
+---
+
+## Notes
+
+**Action required**: Add any additional observations, unexpected findings, or technical details. This section is optional.
+
+[NOTES]
+

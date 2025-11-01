@@ -1,136 +1,68 @@
-# Labnote Creation Workflow
+# Experiment Planning Workflow (exp-plan)
 
 ## Purpose
 
-Create a new Obsidian-compatible labnote file with proper frontmatter, callouts, and structure.
+Create a new experiment labnote with proper numbering, structure, and metadata.
 
 ## Execution Steps
 
-### 1. Request Essential Information from User
+### 1. Find Next Experiment Number
 
-**IMPORTANT**: Never auto-generate dates or titles. Always ask the user.
+```bash
+ls -1 docs/markdown/Exp*.md 2>/dev/null | grep -oP 'Exp\K\d+' | sort -n | tail -1
+```
 
-Ask user for:
-- **Date**: Experiment date in YYYYMMDD format (e.g., 20250125)
-- **Title**: Brief experiment title in lowercase-with-hyphens (e.g., "rnaseq-qc")
-- **Objective**: What you want to accomplish (1-2 sentences)
-- **Background**: Why this is important (Optional, 1-2 sentences)
-- **Purpose**: Specific experimental purpose or hypothesis
-- **Author**: Researcher name
-- **Tags**: Additional tags for categorization (e.g., "rnaseq", "quality-control")
+- If no experiments exist, start with Exp01
+- Otherwise increment by 1
+- Zero-pad to 2 digits (01, 02, ..., 10, 11, ...)
 
-### 2. Load Labnote Template
+### 2. Gather Experiment Details
 
-Read template from: `assets/labnote.md`
+Ask user for (consider any arguments provided):
+- **Title**: Brief descriptive title (lowercase-with-hyphens)
+- **Objective**: What they want to accomplish (1-2 sentences)
+- **Input data path**: Where the input data is located
+- **Expected output location**: Where results will be saved (default: results/Exp##_description)
 
-### 3. Replace Frontmatter and Initial Placeholders
+Keep it simple. Only ask for essential information.
 
-Take time to carefully compose each replacement:
+### 3. Load Template
 
-**Frontmatter (YAML)**:
-- `[DATE_YYYY-MM-DD]` → Formatted date (e.g., 2025-01-25)
-  - Used for both `cdate` and `mdate` fields
-- `[TAG1]` → User's tags (e.g., "rnaseq", "quality-control")
-  - Can be multiple tags: `tags: [labnote, rnaseq, qc]`
-- `[AUTHOR]` → User's name (e.g., "Hiro")
-- `status` → Keep as "in-progress"
+Load the labnote template from skill assets: `assets/labnote.md`
 
-**Background Section (>[!Todo] callout)**:
-- `[BACKGROUND]` → User's background text
-- `[TRIAL_ID]` → Trial ID if applicable (or remove line if not needed)
-- `[OBJECTIVE]` → User's overall objective
+### 4. Replace Placeholders
 
-**Purpose Section (>[!Works] callout)**:
-- `[PURPOSE]` → User's specific purpose/hypothesis
-- `[HYPOTHESIS]` → Additional hypothesis details (or placeholder)
+Replace the following in the template:
+- `[EXP_NUMBER]` → Next experiment number (zero-padded: 01, 02, etc.)
+- `[TITLE]` → User's title
+- `[DATE]` → Current date (YYYY-MM-DD)
+- `[DESCRIPTION]` → Lowercase description for file name
+- `[OBJECTIVE]` → User's objective
+- `[INPUT_PATH]` → User's input path
+- `[OUTPUT_PATH]` → results/Exp##_description
+- Leave `[TOOL1]`, `[VERSION]`, etc. as placeholders for user to fill later
 
-**Results Summary Section (>[!Done] callout)**:
-- Leave template placeholders for user to fill later
+### 5. Create File
 
-**Key Points Section (>[!Important] callout)**:
-- Leave template placeholders for user to fill later
+Write to: `docs/markdown/Exp##_description.md`
 
-**Experimental Timeline Table**:
-- `[DATE_YYYY-MM-DD]` → User's experiment date(s)
-- `[EXP_NAME]` → Placeholder for experiment names
-- Leave as placeholders for user to update as experiments progress
-
-**Individual Experiment Sections (Exp1, Exp2, etc.)**:
-- `[DATE_YYYY-MM-DD]` → User's experiment date
-- `[EXP_TITLE]` → Placeholder (e.g., "実験タイトル")
-- `[EXP_PURPOSE]` → Placeholder
-- `[HYPOTHESIS]` → Placeholder
-- All other fields in Materials, Procedure, Results, Discussion → Keep as placeholders
-- User will fill these in as experiments are performed
-
-**Bottom Sections (総合考察と結論)**:
-- Leave all placeholders as-is
-- User will fill these in after completing experiments
-
-### 4. Create Labnote File
-
-Write to: `notebook/labnote/[DATE_YYYYMMDD]_[title].md`
-
-Example: `notebook/labnote/20250125_rnaseq-qc.md`
-
-### 5. Report Completion to User
-
-Provide clear feedback:
+### 6. Report to User
 
 ```
-✓ Labnote file created
+✓ Experiment labnote created
 
-File: notebook/labnote/20250125_rnaseq-qc.md
-Date: 2025-01-25
-Format: Obsidian-compatible with callouts
-
-Frontmatter configured:
-- cdate/mdate: 2025-01-25
-- tags: [labnote, rnaseq, qc]
-- status: in-progress
-- author: Hiro
-
-Sections filled:
-- Background with objective
-- Purpose with hypothesis
-
-Sections ready to fill:
-- Results Summary (update as experiments complete)
-- Experimental Timeline (update as you add experiments)
-- Individual experiment sections (Exp1, Exp2, etc.)
-- 総合考察と結論 (fill after all experiments complete)
+File: docs/markdown/Exp##_description.md
+Experiment: Exp##
+Title: [title]
 
 Next steps:
-- Fill in experiment sections (Exp1, Exp2, etc.) with details
-- Update Experimental Timeline table as you add experiments
-- Update Results Summary with key findings
-- Use Labnote Update Workflow to modify sections as needed
+- Run /exp-clarify to resolve ambiguities (recommended)
+- Start working on the experiment
+- Update labnote with /exp-update-labnote as you progress
 ```
 
-## Important Notes
+## Notes
 
-- **Never auto-generate dates**: Always ask the user for the date
-- **Never auto-generate titles**: Always ask the user for the title
-- **Preserve Obsidian syntax**: Maintain callout format `>[!Type]`
-- **Keep placeholders**: Don't try to fill all placeholders - many are for user to complete later
-- **YAML frontmatter**: Ensure proper YAML syntax with correct indentation
-- **File naming**: Use YYYYMMDD_lowercase-with-hyphens.md format
-
-## Template Placeholder Reference
-
-Placeholders filled during creation:
-- `[DATE_YYYY-MM-DD]` - Formatted date (2025-01-25)
-- `[TAG1]` - User's tags
-- `[AUTHOR]` - User's name
-- `[BACKGROUND]` - User's background text
-- `[OBJECTIVE]` - User's objective
-- `[PURPOSE]` - User's purpose/hypothesis
-- `[TRIAL_ID]` - Trial ID (optional)
-
-Placeholders left for user to fill:
-- `[EXP_TITLE]` - Experiment titles
-- `[EXP_PURPOSE]` - Specific experiment purposes
-- `[HYPOTHESIS]` - Detailed hypotheses
-- All Materials, Procedure, Results, Discussion fields
-- 総合考察 (Overall discussion) sections
-- 推奨事項 (Recommendations) sections
+- Keep the process simple and quick
+- Don't overwhelm the user with too many questions
+- The labnote is a living document - details will be filled in during execution

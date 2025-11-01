@@ -15,7 +15,7 @@ From arguments or ask user:
 ### 2. Read Corresponding Labnotes
 
 Gather context from:
-- Files: `notebook/labnote/Exp##_*.md`
+- Files: `docs/markdown/Exp##_*.md` or `docs/markdown/YYYYMMDD_*.md`
 - Extract:
   - Objectives
   - Methods used
@@ -55,14 +55,14 @@ Leave interpretation placeholders for user to fill:
 
 ### 6. Create File
 
-Write to: `notebook/report/Exp##_report.md` or `Exp##-##_report.md`
+Write to: `docs/markdown/Exp##_report.md` or `docs/markdown/report_description.md`
 
 ### 7. Report to User
 
 ```
 ✓ Analysis report created
 
-File: notebook/report/Exp##_report.md
+File: docs/markdown/Exp##_report.md
 Experiments covered: Exp##-Exp##
 
 Auto-filled sections:

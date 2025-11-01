@@ -1,315 +1,260 @@
 ---
 name: bioinformatics-experiment
-description: This skill should be used when managing bioinformatics experiment workflows including creating Obsidian-compatible labnotes, documenting experimental results through interactive dialogue, developing high-quality discussions from data, and generating formal lab reports. Applicable for wet-lab and computational experiments requiring systematic documentation with quantitative rigor.
+description: This skill should be used when managing bioinformatics experiment workflows including creating experiment plans (labnotes), resolving ambiguities through interactive Q&A, tracking execution progress, or generating analysis reports from completed experiments. Triggers include requests like "Create new experiment for [analysis]", "Clarify experiment requirements", "Update labnote with [results]", or "Generate report for Exp##".
 ---
 
 # Bioinformatics Experiment Management
 
-## Purpose
+## Overview
 
-Facilitate systematic, high-quality documentation of bioinformatics and wet-lab experiments through interactive workflows that help scientists create labnotes optimized for both AI consumption (structured data, commands, metrics) and human interpretation (insights, discussions, conclusions).
+Structured workflows for managing bioinformatics experiments in an AI-first research environment. Provides systematic experiment planning, interactive clarification, progress tracking, and report generation with templates optimized for 60% AI-readable (structured) and 40% human-readable (interpretive) content.
 
-## When to Use This Skill
+## Core Capabilities
 
-Invoke this skill when the user needs to:
+Four main workflows for experiment management:
 
-- **Create new experiment documentation** - Starting a new labnote file with proper Obsidian-compatible structure
-- **Document experimental results** - Recording measurements, observations, and data from completed experiments
-- **Develop interpretations** - Collaboratively creating Discussion sections with deep insights
-- **Generate formal reports** - Producing polished lab reports from experimental labnotes
+1. **Experiment Planning** - Create new experiment labnotes with proper numbering and structure
+2. **Experiment Clarification** - Resolve ambiguities through targeted Q&A before execution
+3. **Labnote Updates** - Track execution progress with commands and results
+4. **Report Generation** - Create analysis reports from completed experiments
 
-## Core Philosophy
+## Workflow Selection
 
-Embody a humble but insightful research assistant who facilitates exceptional documentation through:
+Determine which workflow to use based on user intent:
 
-- **Thoughtful questioning** - Prompt deep reflection on data and results
-- **Data-focused rigor** - Ensure concrete, specific records with units and context
-- **Respectful collaboration** - Never pushy; respect user's expertise and "that's enough"
-- **Deliberate composition** - Encourage careful, section-by-section writing
+```
+User request → Workflow
 
-**Golden rules**:
-1. User owns the science; facilitate documentation, don't dictate interpretations
-2. Quality over completeness; user satisfaction > exhaustive detail
-3. Probe for specificity, but respect when user indicates completion
+"Create new experiment" / "Plan [analysis]" / "New labnote"
+  → Experiment Planning Workflow
 
-## Core Workflows
+"Clarify [experiment]" / "Resolve ambiguities" / "Define inputs/outputs"
+  → Experiment Clarification Workflow
 
-### Workflow 1: Labnote Creation
+"Update [experiment]" / "Record command" / "Add results"
+  → Labnote Update Workflow
 
-**Purpose**: Create new Obsidian-compatible labnote file from template.
-
-**When to use**: User wants to start documenting a new experiment or experiment series.
-
-**Process summary**:
-1. Request essential metadata (date, title, objective, author)
-2. Load template from `assets/labnote.md`
-3. Replace placeholders with user-provided information
-4. Create file at `notebook/labnote/YYYYMMDD_title.md`
-
-**Detailed instructions**: Load `references/workflow-exp-plan.md` for complete step-by-step process.
-
-**Template**: `assets/labnote.md` - Obsidian-compatible template with YAML frontmatter, callouts ([!Todo], [!Works], [!Done], [!Important]), and experiment sections.
-
----
-
-### Workflow 2: Labnote Update (Interactive Documentation)
-
-**Purpose**: Collaboratively document Results and Discussion through multi-stage dialogue.
-
-**When to use**: User needs to record experimental results, create discussions, or update experiment sections.
-
-**Process summary**:
-
-**Part 1 - Results Documentation** (quantitative rigor):
-1. Multi-stage dialogue: Overview → Quantitative metrics → Qualitative observations → Visual evidence
-2. Internal quality check (2-3 metrics with units, specific observations)
-3. Present draft for approval
-4. Insert into labnote; ask (don't assume) if user wants to proceed to Discussion
-
-**Part 2 - Discussion Creation** (insight extraction):
-1. Prepare context (read Results, objectives, previous experiments)
-2. Interpretation dialogue: Ask about meaning, expectations, comparisons, technical insights
-3. Explore limitations and problems
-4. Identify implications and next steps
-5. Synthesize and confirm before inserting
-
-**Key principles**:
-- **Gentle persistence**: Ask probing questions but respect "that's enough" (max 1-2 follow-ups)
-- **Tone**: Polite inquiry ("もう少し詳しく教えていただけますか？"), never demanding
-- **Acceptance**: If information insufficient after 2 attempts, accept gracefully without complaint
-- **User-driven completion**: "主要な指標は揃ったかと思いますが、他にありますか？"
-
-**Detailed instructions**: Load `references/workflow-exp-update-labnote.md` for:
-- Complete multi-stage dialogue scripts
-- Quality assessment criteria
-- Tone guidelines and edge cases
-- Example high-quality Results and Discussion outputs
-
-**Success metrics**:
-- User feels heard and respected
-- Results has 3+ quantitative metrics with units
-- Discussion cites specific numbers from Results
-- At least 1 limitation identified
-- Next steps are actionable
-- **User is satisfied** (priority over completeness)
-
----
-
-### Workflow 3: Report Generation
-
-**Purpose**: Generate formal lab report from one or more labnote files.
-
-**When to use**: User needs to create polished documentation for sharing, publication, or institutional records.
-
-**Process summary**:
-1. Identify source labnote(s)
-2. Extract Background, Methods, Results, Discussions from all Exp sections
-3. Request report metadata (date, title, author, status)
-4. Ask for executive summary and main conclusions
-5. Load `assets/lab-report.md` template and populate
-6. Create report at `notebook/report/YYYYMMDD_project-lab-report.md`
-
-**Detailed instructions**: Load `references/workflow-exp-report.md` for complete process.
-
-**Template**: `assets/lab-report.md` - Formal report template for polished documentation.
-
----
-
-### Workflow 4: Experiment Clarification (Optional)
-
-**Purpose**: Resolve ambiguities in experiment plans through interactive Q&A.
-
-**When to use**: After creating labnote, if input/output paths or parameters are unclear.
-
-**Detailed instructions**: Load `references/workflow-exp-clarify.md` when needed.
-
----
-
-## Quality Guidelines
-
-### Results Section Excellence
-- ✅ Specific numbers with units (not "fast", but "0.15 s/sample")
-- ✅ Structured data in table format with Pass/Fail status
-- ✅ Observations include timing and context
-- ✅ Figures have descriptive captions
-- ❌ Vague terms without quantification ("good quality", "many threads")
-
-### Discussion Section Excellence
-- ✅ Interpretations cite specific metrics from Results section
-- ✅ Compares to expectations, benchmarks, or other methods
-- ✅ Identifies limitations honestly with proposed solutions
-- ✅ Proposes concrete, actionable next steps
-- ❌ Generic statements ("needs further investigation")
-
-### Example of High-Quality Documentation
-
-**Results**:
-```markdown
-| Metric | Value | Target | Status |
-|--------|-------|--------|--------|
-| Final Training Loss | 0.0245 | < 0.05 | ✓ Pass |
-| Training Time | 45 min | < 60 min | ✓ Pass |
-| Sample Quality (Pearson r) | 0.87 | > 0.80 | ✓ Pass |
-
-**観察事項:**
-- GPU利用率は95-98%で安定。効率的にリソース活用
-- 初期10エポックでlossが振動したが、その後安定化
+"Generate report" / "Summarize experiments" / "Create analysis report"
+  → Report Generation Workflow
 ```
 
-**Discussion**:
-```markdown
-**結果の解釈:**
-- 高いサンプル品質（r=0.87）は、拡散モデルが単一細胞データの分布を適切に捉えられたことを示唆
-- トレーニング時間45分は実用的な範囲内で、大規模な予測タスクにも適用可能
+## Experiment Planning Workflow
 
-**技術的分析:**
-- 初期学習の不安定性は学習率のウォームアップで改善可能と考えられる
-- GPU利用率95%超は最適化が十分に機能していることを示す
+### Purpose
 
-**問題点と改善策:**
-- batch_size=64でOOMエラー → 今後は32で固定、またはgradient accumulationを検討
-```
+Create new experiment labnotes with proper numbering, structure, and metadata.
 
----
+### When to Use
 
-## Bundled Resources
+Trigger when user requests creating a new experiment, starting a new analysis pipeline, or beginning a new research phase.
 
-### Templates (assets/)
+### Procedure
 
-- **`assets/labnote.md`** - Obsidian-compatible labnote template with:
-  - YAML frontmatter (cdate, mdate, tags, status, author)
-  - Callouts ([!Todo], [!Works], [!Done], [!Important])
-  - Experiment sections (Exp1, Exp2, etc.) with Materials, Procedure, Results, Discussion
-  - 総合考察と結論 sections
+1. Find next experiment number by searching `docs/markdown/Exp*.md` files
+2. Gather essential information (4 questions max): title, objective, input path, output path
+3. Load template from `assets/labnote.md`
+4. Replace placeholders with user-provided information
+5. Write file to `docs/markdown/Exp##_description.md`
+6. Report completion and suggest running Experiment Clarification Workflow
 
-- **`assets/lab-report.md`** - Formal lab report template for polished output
+**Important**: Keep questioning minimal (only essentials). Leave tool versions as placeholders for later.
 
-- **`assets/report.md`** - Alternative report template
+**Output**: `docs/markdown/Exp##_description.md` with Trial-based structure.
 
-- **`assets/config.yaml`** - Optional experiment configuration template
+See `references/workflow-exp-plan.md` for detailed step-by-step instructions.
 
-### Detailed Workflow References (references/)
+## Experiment Clarification Workflow
 
-Load these as needed for complete procedural instructions:
+### Purpose
 
-- **`references/workflow-exp-plan.md`** - Complete Labnote Creation workflow with placeholder reference
-- **`references/workflow-exp-update-labnote.md`** - Comprehensive Interactive Documentation workflow including:
-  - Multi-stage dialogue scripts for Results and Discussion
-  - Quality assessment criteria
-  - Tone guidelines (polite Japanese inquiry patterns)
-  - Edge case handling (insufficient info, tired user, opinion requests)
-  - Success metrics
+Identify underspecified areas in experiment plans and resolve through targeted Q&A (max 5 questions). Prevent wasted computational resources by ensuring clear input/output paths, data formats, success criteria, and resource requirements before execution.
 
-- **`references/workflow-exp-report.md`** - Report Generation workflow details
+### When to Use
 
-- **`references/workflow-exp-clarify.md`** - Experiment Clarification Q&A workflow
+Trigger after creating experiment plan (before execution), when experiment plan lacks critical details, or to validate paths, formats, and expectations.
 
----
+### Procedure
+
+1. Parse experiment number and read labnote from `docs/markdown/Exp##_*.md`
+2. Load `pyproject.toml` for compute resource defaults
+3. Perform coverage scan across 8 categories (Objective, Input Data, Output, Method, Success Criteria, Resources, Edge Cases, Context)
+4. Generate up to 5 prioritized questions (Path > Format > Success Criteria > Tool Choice > Context)
+5. Present questions ONE at a time (multiple choice or short answer)
+6. After EACH answer: validate, update labnote immediately, add to `## Clarifications` section, replace vague terms with specifics
+7. Report coverage summary and readiness assessment
+
+**Critical Rules**:
+- Always prioritize path clarification first (absolute paths required)
+- Replace vague statements with quantitative metrics ("quality data" → "Q-score ≥20")
+- Save file after each answer (atomic writes)
+- Never exceed 5 questions
+- Respect early termination signals
+
+**Output**: Updated labnote with `## Clarifications` section and refined descriptions.
+
+See `references/workflow-exp-clarify.md` for comprehensive instructions including coverage scan categories and question templates.
+
+## Labnote Update Workflow
+
+### Purpose
+
+Update existing experiment labnotes with commands, results, observations, or issues during execution.
+
+### When to Use
+
+Trigger after executing analysis steps, when recording tool commands and parameters, documenting results and observations, or noting issues or unexpected findings.
+
+### Procedure
+
+1. Parse experiment number and find labnote at `docs/markdown/Exp##_*.md` (or `YYYYMMDD_*.md`)
+2. If not found, suggest running Experiment Planning Workflow
+3. Ask user what to add: new process step, results/observations, issues, or tool versions
+4. For new process steps: gather step name, rationale, complete command, and result
+5. Append to labnote in timeline format under `## Trial N` → `### Methods`
+6. For results/observations: append bullet points with specific numbers and metrics
+7. Save and report what was added
+
+**Important**: Keep additions simple and factual. Record what was done and what happened. Commands must be reproducible (include all parameters). Include specific numbers/metrics when available.
+
+**Output**: Updated labnote with new Methods steps or Results sections.
+
+See `references/workflow-exp-update-labnote.md` for details and formatting examples.
+
+## Report Generation Workflow
+
+### Purpose
+
+Create comprehensive analysis reports from completed experiments. Reports are human-focused (40% of project content), emphasizing interpretation and biological meaning.
+
+### When to Use
+
+Trigger when experiment(s) are completed, ready to interpret and discuss findings, or need formal documentation of results.
+
+### Procedure
+
+1. Parse experiment range (single: Exp## or range: Exp##-Exp##)
+2. Read corresponding labnotes from `docs/markdown/Exp##_*.md` and extract objectives, methods, findings, tool versions
+3. Ask user for report details: title, main findings, biological interpretations (optional), author name
+4. Load template from `assets/report.md`
+5. Auto-fill from labnotes: title, date, author, objective, data, pipeline steps, tool versions, labnote references
+6. Leave interpretation placeholders for human input: `[INTERPRETATION]`, `[IMPLICATIONS]`, `[CONCLUSIONS]`
+7. Write file to `docs/markdown/Exp##_report.md` (or range: `Exp##-##_report.md`)
+8. Report completion and list sections needing human input
+
+**Important**: Auto-fill factual information from labnotes. Leave interpretation and discussion sections for human input. Reports focus on "why" and biological meaning, not just "what". Include citations to labnotes, figures, and data files using `[^N]` notation.
+
+**Output**: `docs/markdown/Exp##_report.md` with auto-filled facts and placeholders for human interpretation.
+
+See `references/workflow-exp-report.md` for details on report structure and citation system.
 
 ## Project Context
 
-### Expected Directory Structure
+### Directory Structure
 
-Assume projects follow this structure:
-
+Assume project follows this structure:
 ```
-notebook/
-├── labnote/          # Experiment logs (YYYYMMDD_title.md)
-├── analysis/         # Jupyter notebooks
-├── report/           # Final reports (YYYYMMDD_title-lab-report.md)
-└── knowledge/        # Background documentation
+docs/
+├── notebook/         # Jupyter notebooks for analysis (Exp##_*.ipynb)
+└── markdown/         # Labnotes and reports (Exp##_*.md, report_*.md)
+
+data/
+└── raw/              # Raw data (gitignored)
 
 results/              # Analysis outputs (gitignored)
 └── Exp##_*/
 
-config/               # YAML configuration files
+config/               # YAML configuration files (optional)
 └── YYYYMMDD_Exp##_*.yaml
 
 pyproject.toml        # Project settings (compute resources)
 ```
 
+### Compute Resources
+
+Default resources from `pyproject.toml`:
+```toml
+[tool.bioinfo-experiment.compute]
+total_cores = 128
+total_memory_gb = 512
+default_cores = 90        # 70% of total
+default_memory_gb = 358   # 70% of total
+```
+
+Use these defaults unless experiment requires different allocation.
+
 ### File Naming Conventions
 
-- Labnotes: `YYYYMMDD_title.md` (e.g., `20251101_squidiff-testing.md`)
-- Reports: `YYYYMMDD_project-lab-report.md`
-- Configs: `YYYYMMDD_Exp##_description.yaml`
+- Labnotes: `docs/markdown/YYYYMMDD_description.md` or `docs/markdown/Exp##_description.md`
+- Reports: `docs/markdown/Exp##_report.md` or `docs/markdown/report_description.md`
+- Notebooks: `docs/notebook/Exp##_description.ipynb`
+- Configs: `config/YYYYMMDD_Exp##_description.yaml` (optional)
+- Results: `results/Exp##_description/` or `results/YYYYMMDD_description/`
 
-### Compute Resources (if pyproject.toml exists)
+All experiment numbers zero-padded to 2 digits (01, 02, ..., 10, 11, ...).
 
-Default resources from `[tool.bioinfo-experiment.compute]`:
-- `default_cores` - Usually 70% of total (e.g., 90 cores)
-- `default_memory_gb` - Usually 70% of total (e.g., 358GB)
+## Templates
 
----
+This skill includes three templates in `assets/`:
 
-## Interaction Guidelines
+1. **labnote.md** - Experiment log template with Trial-based structure
+2. **report.md** - Analysis report template with citation system
+3. **config.yaml** - Optional configuration file template
 
-### Tone & Language
+Templates use placeholder syntax: `[PLACEHOLDER_NAME]`
 
-**When asking questions**:
-- ✅ "もう少し詳しく教えていただけますか？" (polite inquiry)
-- ✅ "主要な指標は揃ったかと思いますが、他にありますか？" (gentle completion check)
-- ❌ "これでは不十分です" (demanding)
-- ❌ "正しい解釈は..." (presumptuous)
+## Workflow References
 
-**When concluding**:
-- ✅ "この内容でよろしいでしょうか？" (seeking approval)
-- ✅ "Discussion セクションで考察を行いますか？" (offering option, not assuming)
-- ❌ "次は Discussion を作成します" (assuming next step)
+Detailed procedural instructions available in `references/`:
 
-**When user seems tired**:
-- ✅ "承知しました。現時点の情報で記録します" (graceful acceptance)
-- ✅ "後で追加が必要になったら、いつでも更新できます" (reassurance)
-- ❌ "もっと詳しく説明してください" (pushy)
+- `workflow-exp-plan.md` - Experiment Planning Workflow
+- `workflow-exp-clarify.md` - Experiment Clarification Workflow
+- `workflow-exp-update-labnote.md` - Labnote Update Workflow
+- `workflow-exp-report.md` - Report Generation Workflow
 
-### Edge Cases
-
-**Insufficient information**: Gently ask 1-2 follow-ups maximum, then accept gracefully
-
-**User asks for opinion**: Offer data-based observations, defer to user's expertise:
-```
-"私の理解では[data-based observation]ですが、
-専門的な解釈は[User]さんの方がよくご存知かと思います。
-どうお考えですか？"
-```
-
-**User says "that's enough"**: Accept immediately, record what you have, remind user they can add more later
-
----
+Load relevant reference files as needed for comprehensive instructions.
 
 ## Usage Examples
 
-**Creating new experiment labnote**:
+**Creating new experiment:**
 ```
-User: "Create a new labnote for RNA-seq quality control"
-→ Invoke Workflow 1: Labnote Creation
-→ Load references/workflow-exp-plan.md for detailed steps
-→ Use assets/labnote.md template
-```
-
-**Documenting experimental results**:
-```
-User: "Update Exp1 with my FastQC results"
-→ Invoke Workflow 2 Part 1: Results Documentation
-→ Load references/workflow-exp-update-labnote.md
-→ Multi-stage dialogue to gather metrics, observations, figures
-→ Create high-quality Results section
+User: "Create a new experiment for RNA-seq quality control"
+→ Use Experiment Planning Workflow
+→ Assign Exp##, create labnote from template
+→ Recommend running Clarification Workflow
 ```
 
-**Creating discussion**:
+**Clarifying experiment plan:**
 ```
-User: "Let's write the Discussion for Exp1"
-→ Invoke Workflow 2 Part 2: Discussion Creation
-→ Load references/workflow-exp-update-labnote.md
-→ Collaborative interpretation dialogue
-→ Synthesize insights into structured Discussion section
+User: "Clarify Exp03 - I need to define the inputs"
+→ Use Experiment Clarification Workflow
+→ Prioritize input/output path questions
+→ Update labnote with absolute paths and formats
 ```
 
-**Generating formal report**:
+**Recording execution:**
 ```
-User: "Create a report from my squidiff experiments"
-→ Invoke Workflow 3: Report Generation
-→ Load references/workflow-exp-report.md
-→ Extract data from labnotes, compose formal document
-→ Use assets/lab-report.md template
+User: "I ran FastQC on the samples, update Exp03"
+→ Use Labnote Update Workflow
+→ Add command, parameters, and results to labnote
 ```
+
+**Generating report:**
+```
+User: "Create a report for Exp01-03"
+→ Use Report Generation Workflow
+→ Extract data from labnotes
+→ Create report with auto-filled facts, leave interpretations for user
+```
+
+## Best Practices
+
+1. **Keep labnotes simple** - Record facts, commands, and observations
+2. **Prioritize path clarity** - Always use absolute paths in clarifications
+3. **Update incrementally** - Update labnotes during execution, not after
+4. **Report thoughtfully** - Reports need human interpretation and insight
+5. **Follow numbering** - Always check highest Exp## and increment
+6. **Use templates** - Leverage provided templates for consistency
+7. **Validate paths** - Ensure input/output paths exist and are correct
+8. **Document rationale** - Record "why" decisions were made
+9. **Include metrics** - Always provide specific numbers and measurements
+10. **Cite sources** - In reports, cite labnotes, figures, and data files
