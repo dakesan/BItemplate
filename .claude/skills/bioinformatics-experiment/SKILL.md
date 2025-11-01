@@ -9,14 +9,31 @@ description: Manage bioinformatics experiment workflows - planning, clarificatio
 
 Provide structured workflows for managing bioinformatics experiments in an AI-first research environment. Enable systematic experiment planning, interactive clarification, progress tracking, and report generation with templates optimized for 60% AI-readable (structured) and 40% human-readable (interpretive) content.
 
+## Core Philosophy: Deliberate and Thoughtful Writing
+
+**CRITICAL**: All workflows must emphasize careful, step-by-step text composition. Each section should be:
+- Written slowly and deliberately, one paragraph at a time
+- Carefully proofread before moving to the next section
+- Thoughtfully composed with attention to clarity and precision
+- Never rushed - quality over speed
+
+This is research documentation that will be read and built upon for months. Take the time to write it well.
+
 ## Core Capabilities
 
-This skill provides four main workflows:
+This skill provides four main workflows for managing bioinformatics experiments:
 
-1. **Experiment Planning** - Create new experiment labnotes with proper numbering and structure
-2. **Experiment Clarification** - Resolve ambiguities through targeted Q&A before execution
-3. **Labnote Updates** - Track execution progress with commands and results
-4. **Report Generation** - Create analysis reports from completed experiments
+1. **Labnote Creation** - Create new labnote file (YYYYMMDD_title.md) for an experiment theme
+2. **Experiment Addition** - Add new Exp## section to existing labnote
+3. **Experiment Update** - Update Methods/Results within specific Exp## section
+4. **Report Generation** - Generate formal lab report from labnote(s)
+
+### Key Concepts
+
+- **Labnote file**: One file per experiment theme (e.g., `20250125_squidiff-testing.md`)
+- **Experiment sections**: Multiple `## 実験N: ExpNN (Purpose)` sections within one labnote
+- **Careful composition**: Each section written deliberately, proofread before proceeding
+- **Obsidian compatibility**: Uses callouts ([!Todo], [!Works], [!Done], [!Important]) and wikilinks
 
 ## Workflow Decision Tree
 
@@ -25,24 +42,24 @@ Determine which workflow to use based on user intent:
 ```
 User request → Which workflow?
 
-"Create new experiment" / "Plan Exp##" / "New labnote"
-  → Experiment Planning Workflow
+"Create new labnote" / "Start experiment series" / "New labnote file"
+  → Labnote Creation Workflow (creates YYYYMMDD_title.md)
 
-"Clarify Exp##" / "Resolve ambiguities" / "Define inputs/outputs"
-  → Experiment Clarification Workflow
+"Add Exp##" / "Add new experiment" / "Add experiment to labnote"
+  → Experiment Addition Workflow (adds ## 実験N: ExpNN section)
 
-"Update Exp##" / "Record command" / "Add results"
-  → Labnote Update Workflow
+"Update Exp##" / "Record results" / "Add methods to Exp##"
+  → Experiment Update Workflow (updates specific Exp## section)
 
-"Generate report" / "Summarize Exp##" / "Create analysis report"
-  → Report Generation Workflow
+"Generate report" / "Create lab report" / "Formal report from labnote"
+  → Report Generation Workflow (creates YYYYMMDD_project-lab-report.md)
 ```
 
-## Experiment Planning Workflow
+## Workflow 1: Labnote Creation
 
 ### Purpose
 
-Create a new experiment labnote with proper numbering, structure, and metadata.
+Create a new labnote file for an experiment theme. This file will contain multiple experiment sections (Exp##) as the research progresses.
 
 ### When to Use
 

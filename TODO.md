@@ -86,29 +86,83 @@ This TODO list guides the systematic testing and refinement of the `bioinformati
 ## Phase 5: Issue Collection & Refinement
 
 **Identified Issues**:
-- [ ] List all issues found during testing
-- [ ] Prioritize issues by severity
-- [ ] Categorize by workflow
+
+### Phase 1 Issues (Experiment Planning):
+- [x] **Experiment number should be requested from user**: Currently auto-increments, but user may want to specify (e.g., continuing from existing experiments)
+- [x] **Template contains residual "Action required" messages**: First line of template has unnecessary instruction
+- [ ] Validate with real use case (~/Desktop/Squidiff)
+
+### Phase 2 Issues (Experiment Clarification):
+- [ ] Need to test with Squidiff use case
+- [ ] Validate careful, step-by-step questioning approach
+- [ ] Test text refinement quality
+
+### General Issues:
+- [x] **Need emphasis on careful writing**: All workflows should emphasize thoughtful, deliberate text composition
+- [ ] macOS grep compatibility (no -P flag support)
 
 **Improvement Areas**:
-- [ ] Workflow logic improvements
-- [ ] Template enhancements
-- [ ] Error handling
-- [ ] User experience optimization
-- [ ] Documentation clarity
+- [x] Workflow logic improvements: Add experiment number request to Planning Workflow
+- [ ] Template enhancements: Remove unnecessary "Action required" messages
+- [x] Error handling: macOS-compatible commands
+- [x] User experience optimization: Let user specify experiment number
+- [x] Documentation clarity: Add "careful writing" philosophy to all workflows
 
 ---
 
 ## Phase 6: Implementation of Improvements
 
-**Priority 1 (Critical)**:
-- [ ] TBD based on testing
+### CRITICAL: Design Misunderstanding Identified (2025-11-01)
+
+**Previous (INCORRECT) Design**:
+- ❌ 1 labnote file = 1 experiment
+- ❌ File naming: `Exp##_description.md` (e.g., `Exp01_rnaseq-qc.md`)
+- ❌ Auto-incrementing experiment numbers
+- ❌ Each file contains single Trial sections
+
+**Correct Design** (based on ~/Documents/Hiro/obsidian-note):
+- ✓ **1 labnote file = 1 experiment theme (containing multiple Exp## sections)**
+- ✓ **File naming**: `YYYYMMDD_<experiment-title>.md` (e.g., `20250125_squidiff-testing.md`)
+- ✓ **User provides**: Date and experiment title (not auto-generated)
+- ✓ **File structure**:
+  ```markdown
+  # YYYYMMDD_experiment-title
+
+  >[!Todo] Background
+  >- Overall experiment purpose
+
+  ## 実験1: Exp01 (Purpose/Phase)
+  >[!Works] Methods
+  >[!Done] Results
+
+  ## 実験2: Exp02 (Purpose/Phase)
+  >[!Works] Methods
+  >[!Done] Results
+
+  >[!Important] Discussion
+  ## Conclusions
+  ```
+
+**Required Changes**:
+
+**Priority 1 (Critical - Complete Redesign)**:
+- [ ] Redesign Workflow 1: Create labnote file with YYYYMMDD_title.md naming
+- [ ] Redesign Workflow 2: Add new Exp## section to existing labnote
+- [ ] Redesign Workflow 3: Update specific Exp## section within labnote
+- [ ] Redesign Workflow 4: Generate lab report from labnote(s)
+- [ ] Create new labnote template matching obsidian-note format
+- [ ] Create new lab report template
+- [ ] Update all workflow references to match new design
 
 **Priority 2 (Important)**:
-- [ ] TBD based on testing
+- [ ] Add Obsidian callout syntax support ([!Todo], [!Works], [!Done], [!Important])
+- [ ] Add wikilink support for cross-referencing
+- [ ] Integrate with ~/Desktop/Squidiff as test case
 
 **Priority 3 (Nice to have)**:
-- [ ] TBD based on testing
+- [ ] Multi-labnote aggregation for reports
+- [ ] Protocol reference system ([[protocol_*]])
+- [ ] Auto-generated table templates
 
 ---
 
