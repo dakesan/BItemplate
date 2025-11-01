@@ -25,64 +25,95 @@ author: Hiro
 
 ---
 
-## 実験1: Exp01 ([PURPOSE])
+## 実験1: Exp01 (基本動作確認)
 
->[!Works] [EXPERIMENT_TYPE]
+>[!Works] Squidiff Basic Functionality Test
 >
 >### 実験情報
 >- **試験番号**: Exp01
->- **実施日**: [EXPERIMENT_DATE]
+>- **実施日**: 2025-11-01
 >- **作業者**: Hiro
->- **目的**: [SPECIFIC_OBJECTIVE]
+>- **目的**: Squidiffの基本的な動作を確認し、サンプルデータセットでのトレーニングとサンプリングが正常に実行できることを検証する
 >
 >### 実験設計
->- [DESIGN_DETAIL_1]
->- [DESIGN_DETAIL_2]
->- [DESIGN_DETAIL_3]
+>- Squidiffリポジトリの提供するサンプルスクリプトを使用
+>- train_squidiff.pyで基本的なモデルトレーニングを実行
+>- sample_squidiff.pyでサンプリング動作を確認
+>- 既存のサンプルデータセット（datasets/）を使用
 >
 >### 使用サンプル
 >
 >| Sample ID | サンプル種類 | 条件 | 本数 | 備考 |
 >|-----------|------------|------|------|------|
->| [SAMPLE_ID] | [SAMPLE_TYPE] | [CONDITION] | [COUNT] | [NOTES] |
+>| sc_simu_test.h5ad | Simulated single-cell data | Test dataset | 1 | From datasets/ directory |
 >
 >### Methods
 >
->#### [Step Title]
+>#### Step 1: Environment Setup
 >
->**Why**: [Rationale for this approach]
+>**Why**: Squidiffの実行に必要な依存関係を確認し、仮想環境を準備する
 >
 >```bash
->[COMMAND]
+>cd ~/Desktop/Squidiff
+>python -m venv .venv
+>source .venv/bin/activate
+>pip install -e .
 >```
 >
 >**Parameters**:
->- [PARAM1]: [VALUE] - [EXPLANATION]
->- [PARAM2]: [VALUE] - [EXPLANATION]
+>- Python version: 3.x
+>- Installation mode: Editable install (-e) for development
+>
+>#### Step 2: Basic Training Test
+>
+>**Why**: モデルのトレーニング機能が正常に動作することを確認する
+>
+>```bash
+>python train_squidiff.py --logger_path test_logger --data_path datasets/[dataset].h5ad --gene_size 100 --output_dim 100
+>```
+>
+>**Parameters**:
+>- gene_size: 100 - Input gene dimension for testing
+>- output_dim: 100 - Output dimension matching gene_size
+>- logger_path: test_logger - Log file location
+>
+>#### Step 3: Sampling Test
+>
+>**Why**: トレーニングされたモデルからのサンプリングが機能することを確認する
+>
+>```bash
+>python sample_squidiff.py
+>```
+>
+>**Parameters**:
+>- model_path: To be determined from training output
+>- use_drug_structure: False - Basic test without drug structure
 
 >[!Done] Results
 >
 >### Key Findings
 >
->- [FINDING_1]
->- [FINDING_2]
->- [FINDING_3]
+>- [実行結果を記録予定]
+>- [トレーニング時間とメモリ使用量]
+>- [サンプリング結果の品質評価]
 >
 >**Key Figures**:
 >
->![Figure 1: [DESCRIPTION]](results/20251101_squidiff-testing/exp01/[figure_name].png)
+>![Figure 1: Training Loss Curve](results/20251101_squidiff-testing/exp01/training_loss.png)
+>![Figure 2: Sample Quality](results/20251101_squidiff-testing/exp01/sample_quality.png)
 
 >[!Important]
 >
 >### Observations
 >
->- [OBSERVATION_OR_ISSUE_1]
->- [OBSERVATION_OR_ISSUE_2]
+>- [実行中に発生した問題や注意点を記録]
+>- [期待と異なる挙動があれば記載]
 >
 >### Next Steps
 >
->- [ ] [NEXT_STEP_1]
->- [ ] [NEXT_STEP_2]
+>- [ ] 実際のデータセットでのトレーニングテスト
+>- [ ] パラメータチューニング
+>- [ ] 薬物構造を含むトレーニング（use_drug_structure=True）のテスト
 
 ---
 
