@@ -63,274 +63,332 @@ Create a new labnote file for an experiment theme. This file will contain multip
 
 ### When to Use
 
-- User requests creating a new experiment
-- Starting a new analysis or pipeline
-- Beginning a new phase of research
+- Starting a new experiment theme (e.g., "squidiff-testing", "rnaseq-qc-validation")
+- Beginning a series of related experiments
+- Creating formal documentation for a research project
 
 ### Execution Steps
 
-1. **Find next experiment number**
+**IMPORTANT**: Work carefully and deliberately. Each piece of information should be thoughtfully composed.
 
-   ```bash
-   ls -1 notebook/labnote/Exp*.md 2>/dev/null | grep -oP 'Exp\K\d+' | sort -n | tail -1
-   ```
-
-   If no experiments exist, start with Exp01. Otherwise increment by 1 and zero-pad to 2 digits.
-
-2. **Gather essential information**
+1. **Request essential information from user**
 
    Ask user for:
-   - Brief title/description (lowercase-with-hyphens format)
-   - Objective (1-2 sentences describing what to accomplish)
-   - Input data path
-   - Expected output location
+   - **Date**: Experiment start date (YYYYMMDD format, e.g., 20250125)
+   - **Title**: Brief experiment theme title (lowercase-with-hyphens, e.g., "squidiff-testing")
+   - **Overall objective**: What is this experiment series trying to accomplish? (2-3 sentences)
+   - **Background context**: Why is this important? Related research? (Optional, 1-2 sentences)
 
-   Keep questioning minimal - only essentials.
+   **Never auto-generate dates or titles**. Always request from user.
 
-3. **Load and populate template**
+2. **Load labnote template**
 
-   - Read `assets/labnote.md`
-   - Replace placeholders:
-     - `[EXP_NUMBER]` → Next experiment number (01, 02, etc.)
-     - `[TITLE]` → User's title
-     - `[DATE]` → Current date (YYYY-MM-DD)
-     - `[DESCRIPTION]` → Lowercase description for filename
-     - `[OBJECTIVE]` → User's objective
-     - `[INPUT_PATH]` → User's input path
-     - `[OUTPUT_PATH]` → results/Exp##_description
-   - Leave `[TOOL1]`, `[VERSION]` as placeholders for later
+   Read template from: `assets/labnote.md`
 
-4. **Write file**
+3. **Replace placeholders thoughtfully**
 
-   Create: `notebook/labnote/Exp##_description.md`
+   Take time to compose each replacement:
+   - `[DATE_YYYYMMDD]` → User's date (e.g., 20250125)
+   - `[DATE_YYYY-MM-DD]` → Formatted date (e.g., 2025-01-25)
+   - `[TITLE]` → User's title
+   - `[EXPERIMENT_THEME]` → Title with spaces (e.g., "Squidiff Testing")
+   - `[OBJECTIVE]` → User's objective (carefully written)
+   - `[BACKGROUND]` → User's background (if provided)
+   - `[AUTHOR]` → From pyproject.toml or ask user
 
-5. **Report completion**
+4. **Create labnote file**
+
+   Write to: `notebook/labnote/[DATE_YYYYMMDD]_[title].md`
+
+   Example: `notebook/labnote/20250125_squidiff-testing.md`
+
+5. **Report completion to user**
 
    ```
-   ✓ Experiment labnote created
+   ✓ Labnote file created
 
-   File: notebook/labnote/Exp##_description.md
-   Experiment: Exp##
-   Title: [title]
+   File: notebook/labnote/20250125_squidiff-testing.md
+   Date: 2025-01-25
+   Theme: Squidiff Testing
+
+   This labnote is ready to receive experiment sections (Exp01, Exp02, etc.)
 
    Next steps:
-   - Run Experiment Clarification Workflow (recommended)
-   - Start working on the experiment
-   - Use Labnote Update Workflow to track progress
+   - Use Experiment Addition Workflow to add your first experiment (Exp01)
+   - Fill in Background section with detailed context
+   - Begin executing experiments and documenting results
    ```
 
 See `references/workflow-exp-plan.md` for detailed instructions.
 
-## Experiment Clarification Workflow
+## Workflow 2: Experiment Addition
 
 ### Purpose
 
-Identify underspecified areas in experiment plans and resolve them through targeted Q&A (max 5 questions). Prevent wasted computational resources by ensuring clear input/output paths, data formats, success criteria, and resource requirements before execution.
+Add a new experiment section (## 実験N: ExpNN) to an existing labnote file. Each experiment represents a distinct trial, condition test, or analysis phase within the overall experiment theme.
 
 ### When to Use
 
-- After creating experiment plan (before execution)
-- When experiment plan lacks critical details
-- To validate paths, formats, and expectations
-
-### Key Priorities
-
-Questions prioritized in this order:
-1. **Path specification** (input/output) - CRITICAL
-2. **Data format & scale** - prevents wrong tool choice
-3. **Success criteria** - prevents uninterpretable results
-4. **Tool/parameter rationale** - prevents poor analysis choices
-5. **Biological context** - ensures meaningful interpretation
-
-### Coverage Scan Categories
-
-Assess each category as **Clear** / **Partial** / **Missing**:
-
-- Experiment Objective & Scope
-- Input Data (HIGH PRIORITY - absolute paths, format, scale)
-- Output Specification (HIGH PRIORITY - paths, format, naming)
-- Analysis Method (tool justification, key parameters)
-- Success Criteria & Validation (quantitative metrics)
-- Compute Resources (threads, memory, runtime)
-- Edge Cases & Failure Handling
-- Biological Context (hypothesis, interpretation)
-
-### Execution Approach
-
-1. Parse experiment number (Exp##)
-2. Load `pyproject.toml` for compute defaults and labnote file
-3. Perform coverage scan
-4. Generate up to 5 prioritized questions
-5. Present questions ONE at a time (multiple choice or short answer)
-6. After EACH answer:
-   - Validate format
-   - Update labnote immediately
-   - Add to `## Clarifications` section
-   - Replace vague terms with specifics
-7. Report coverage summary and readiness assessment
-
-### Integration Rules
-
-- Always prioritize path clarification first
-- Replace vague statements:
-  - "quality data" → "Q-score ≥20"
-  - "sufficient coverage" → "≥30X mean coverage"
-  - "some samples" → "12 tumor-normal pairs"
-- Save file after each answer (atomic writes)
-- Never exceed 5 questions
-- Respect early termination signals ("done", "stop", "skip")
-
-See `references/workflow-exp-clarify.md` for comprehensive instructions.
-
-## Labnote Update Workflow
-
-### Purpose
-
-Update existing experiment labnotes with commands, results, observations, or issues during execution.
-
-### When to Use
-
-- After executing analysis steps
-- Recording tool commands and parameters
-- Documenting results and observations
-- Noting issues or unexpected findings
+- Adding the first experiment (Exp01) to a newly created labnote
+- Adding follow-up experiments (Exp02, Exp03, etc.) to an ongoing research theme
+- Documenting a new experimental condition or parameter variation
 
 ### Execution Steps
 
-1. **Parse experiment number** (Exp##)
+**IMPORTANT**: Write each section carefully. This is permanent research documentation.
 
-2. **Find and read labnote**
-   - Path: `notebook/labnote/Exp##_*.md`
-   - If not found, suggest running Experiment Planning Workflow
+1. **Identify target labnote and experiment number**
 
-3. **Determine update type**
+   Ask user for:
+   - **Labnote file**: Which labnote file? (e.g., "20250125_squidiff-testing.md")
+   - **Experiment ID**: Which experiment number? (e.g., "Exp01", "Exp02")
+   - **Experiment purpose**: Brief description of this specific experiment (e.g., "Initial parameter exploration", "Validation with real data")
 
-   Ask user what to add:
-   - New process step with command
-   - Results/observations
-   - Issues encountered
-   - Tool versions
+   **User must provide experiment number**. Never auto-increment.
 
-4. **For new process steps**
+2. **Find and read existing labnote**
 
-   Gather:
-   - Step name/action
-   - Rationale (why this step/approach)
-   - Complete command with all parameters
-   - Result (numbers, metrics, status)
+   - Locate file in `notebook/labnote/YYYYMMDD_title.md`
+   - If file doesn't exist, suggest using Labnote Creation Workflow first
+   - Read entire file to understand context
 
-   Append in timeline format:
+3. **Gather experiment details**
+
+   Ask user thoughtfully:
+   - **Date performed**: When was/will this experiment be conducted? (YYYY-MM-DD)
+   - **Experiment objective**: What specifically does this experiment aim to test? (1-2 sentences)
+   - **Sample information**: What samples/data are being used? (Optional)
+   - **Planned approach**: What methods will be used? (Brief outline, 2-3 bullets)
+
+4. **Compose new experiment section**
+
+   Carefully write the new section:
+
    ```markdown
-   ### Step N: [ACTION]
+   ## 実験N: ExpNN (Purpose/Phase)
 
-   [RATIONALE]
-
-   ```bash
-   [COMMAND]
+   >[!Works] [Experiment Type/Description]
+   >
+   >### 実験情報
+   >- **試験番号**: ExpNN
+   >- **実施日**: YYYY-MM-DD
+   >- **作業者**: [Author]
+   >- **目的**: [Specific objective]
+   >
+   >### 実験設計
+   >- [Design details]
+   >- [Sample information]
+   >- [Controls and variables]
    ```
 
-   Result: [RESULT]
+5. **Insert section into labnote**
+
+   - Insert before the final Results/Discussion sections
+   - Maintain proper Obsidian callout syntax
+   - Preserve existing formatting
+
+6. **Report completion to user**
+
+   ```
+   ✓ Experiment section added
+
+   File: notebook/labnote/20250125_squidiff-testing.md
+   Section: ## 実験1: Exp01 (Initial parameter exploration)
+
+   Next steps:
+   - Execute the experiment
+   - Use Experiment Update Workflow to add Methods and Results
+   - Document observations as they occur
    ```
 
-5. **For results or observations**
+See `references/workflow-exp-add.md` for detailed instructions.
 
-   Append bullet points with specific numbers and metrics
-
-6. **Save and report**
-
-   ```
-   ✓ Labnote updated
-
-   File: notebook/labnote/Exp##_description.md
-   Added: [summary]
-   ```
-
-### Notes
-
-- Keep additions simple and factual
-- Record what was done and what happened
-- Commands should be reproducible (include all parameters)
-- Include specific numbers/metrics when available
-
-See `references/workflow-exp-update-labnote.md` for details.
-
-## Report Generation Workflow
+## Workflow 3: Experiment Update
 
 ### Purpose
 
-Create comprehensive analysis reports from completed experiments. Reports are human-focused (40% of project content), emphasizing interpretation and biological meaning.
+Update a specific experiment section (Exp##) within a labnote file with Methods, Results, or additional observations. This is used during and after experiment execution to document what was actually done and what was observed.
 
 ### When to Use
 
-- Experiment(s) completed
-- Ready to interpret and discuss findings
-- Need formal documentation of results
+- Recording experimental procedures (Methods)
+- Documenting results and observations (Results)
+- Adding notes about issues, unexpected findings, or deviations from plan
+- Updating any part of an existing Exp## section
 
 ### Execution Steps
 
-1. **Parse experiment range**
-   - Single: Exp## (e.g., Exp03)
-   - Range: Exp##-Exp## (e.g., Exp01-Exp03)
+**IMPORTANT**: Document thoroughly. Future you (6 months from now) needs to understand exactly what happened.
 
-2. **Read corresponding labnotes**
+1. **Identify target experiment section**
 
-   Extract from `notebook/labnote/Exp##_*.md`:
-   - Objectives
-   - Methods used
-   - Key findings
-   - Tool versions and commands
+   Ask user for:
+   - **Labnote file**: Which labnote? (e.g., "20250125_squidiff-testing.md")
+   - **Experiment ID**: Which experiment section? (e.g., "Exp01")
+   - **Update type**: What are you updating? (Methods / Results / Observations / Other)
 
-3. **Ask for report details**
+2. **Read existing labnote and locate section**
+
+   - Find file: `notebook/labnote/YYYYMMDD_title.md`
+   - Locate the `## 実験N: ExpNN` section
+   - Read existing content to understand context
+
+3. **Gather update content based on type**
+
+   **For Methods updates**:
+   - Ask: What step/procedure was performed?
+   - Ask: Why this approach? (Rationale)
+   - Ask: Command executed? (Full command with all parameters)
+   - Ask: Any important parameters to highlight?
+
+   Compose in this format:
+   ```markdown
+   >### [Step Title]
+   >
+   >**Why**: [Rationale for this approach]
+   >
+   >```bash
+   >[COMPLETE_COMMAND]
+   >```
+   >
+   >**Parameters**:
+   >- [PARAM1]: [VALUE] - [EXPLANATION]
+   >- [PARAM2]: [VALUE] - [EXPLANATION]
+   ```
+
+   **For Results updates**:
+   - Ask: What were the key findings?
+   - Ask: Any quantitative metrics? (Numbers, percentages, counts)
+   - Ask: Any figures or tables to reference?
+
+   Compose carefully with specific numbers and observations.
+
+4. **Insert or append to appropriate subsection**
+
+   Within the `## 実験N: ExpNN` section:
+   - **Methods** go under `>[!Works]` callout
+   - **Results** go under `>[!Done]` callout (create if doesn't exist)
+   - **Issues/Notes** go under `>[!Important]` callout
+
+   Preserve existing Obsidian callout syntax.
+
+5. **Report completion to user**
+
+   ```
+   ✓ Experiment section updated
+
+   File: notebook/labnote/20250125_squidiff-testing.md
+   Section: ## 実験1: Exp01
+   Updated: Methods (added FastQC execution)
+
+   The update has been integrated into the appropriate callout section.
+   ```
+
+### Documentation Quality Guidelines
+
+- **Be specific**: "Q-score ≥30" not "good quality"
+- **Include units**: "16 threads" not "many threads"
+- **Record failures**: Document what didn't work and why
+- **Commands must be reproducible**: Include full paths, all parameters
+- **Future-proof**: Write for someone reading this 6 months later
+
+See `references/workflow-exp-update.md` for detailed instructions.
+
+## Workflow 4: Report Generation
+
+### Purpose
+
+Generate a formal lab report from one or more labnote files. Reports are polished, formal documents suitable for sharing with collaborators, publication supplementary materials, or institutional records.
+
+### When to Use
+
+- Completing a research project or milestone
+- Preparing results for presentation or publication
+- Creating formal documentation for institutional requirements
+- Summarizing a series of experiments for decision-making
+
+### Execution Steps
+
+**IMPORTANT**: Reports are formal documents. Write with extra care and attention to clarity.
+
+1. **Identify source labnotes**
+
+   Ask user for:
+   - **Source labnote(s)**: Which labnote file(s)? (e.g., "20250125_squidiff-testing.md")
+   - **Date for report**: Report creation date (YYYYMMDD)
+   - **Report title**: Formal title for this report (e.g., "squidiff-validation-results")
+   - **Author**: Who is authoring this report?
+
+2. **Read and analyze source labnotes**
+
+   For each labnote:
+   - Read entire file
+   - Extract Background/Objective
+   - Collect all Exp## sections
+   - Gather Methods from `>[!Works]` callouts
+   - Gather Results from `>[!Done]` callouts
+   - Note any `>[!Important]` issues or observations
+
+3. **Ask for report specifics**
 
    Get user input:
-   - Report title
-   - Main findings to highlight
-   - Biological interpretations (if ready)
-   - Author name
+   - **Executive summary**: 1-2 paragraph summary of key findings
+   - **Main conclusions**: What are the takeaway messages? (2-3 bullets)
+   - **Recommendations**: What should happen next?
+   - **Status**: draft / review / final
 
-4. **Load and populate template**
+4. **Load and populate lab report template**
 
-   - Read `assets/report.md`
-   - Auto-fill from labnotes:
-     - `[TITLE]`, `[EXP_RANGE]`, `[DATE]`, `[AUTHOR]`
-     - `[OBJECTIVE]`, `[DATA_DESCRIPTION]`
-     - `[STEP1]`, `[STEP2]` (pipeline steps)
-     - `[LABNOTE_REFS]` (list of labnotes)
-     - `[TOOL1]`, `[VERSION]` (software versions)
-   - Leave interpretation placeholders for human input
+   Read template from: `assets/lab-report.md`
 
-5. **Write file**
+   Auto-fill from labnotes:
+   - `[DATE_YYYYMMDD]` → Report date
+   - `[DATE_YYYY-MM-DD]` → Formatted date
+   - `[PROJECT_NAME]` → Title
+   - `[AUTHOR]` → Author name
+   - `[STATUS]` → Report status
+   - `[EXECUTIVE_SUMMARY]` → User's summary
+   - `[BACKGROUND]` → From labnote Background
+   - `[METHODS]` → Aggregated from all Exp## Methods
+   - `[RESULTS]` → Aggregated from all Exp## Results
+   - `[CONCLUSIONS]` → User's conclusions
+   - `[LABNOTE_REFS]` → List of source labnotes
 
-   Create: `notebook/report/Exp##_report.md` or `Exp##-##_report.md`
+5. **Create report file**
 
-6. **Report completion**
+   Write to: `notebook/report/[DATE_YYYYMMDD]_[project-name]-lab-report.md`
+
+   Example: `notebook/report/20250201_squidiff-validation-lab-report.md`
+
+6. **Report completion to user**
 
    ```
-   ✓ Analysis report created
+   ✓ Lab report generated
 
-   File: notebook/report/Exp##_report.md
-   Experiments covered: Exp##-Exp##
+   File: notebook/report/20250201_squidiff-validation-lab-report.md
+   Source: notebook/labnote/20250125_squidiff-testing.md
+   Status: draft
 
    Auto-filled sections:
-   - Objective, Data, Pipeline, Software versions
+   - Executive Summary, Background, Methods, Results, Conclusions
 
-   Sections to complete (HUMAN INPUT):
-   - Results interpretation
-   - Biological implications
-   - Discussion of findings
-   - Conclusions
+   Sections requiring human review:
+   - Discussion (interpretation and implications)
+   - Recommendations (next steps)
+   - Review and polish all auto-filled content
 
-   This is for HUMANS - write clearly with thoughtful interpretation.
+   This is a FORMAL document. Please review carefully before sharing.
    ```
 
-### Report Philosophy
+### Report Quality Guidelines
 
-- Reports focus on "why" and biological meaning, not just "what"
-- Include citations to labnotes, figures, and data files
-- Interpretation and discussion are human-written
-- This is the 40% human-readable content of the project
+- **Formal tone**: Professional language suitable for external sharing
+- **Complete context**: Readers should not need to reference labnotes
+- **Clear figures**: All figures referenced with captions
+- **Reproducible**: Sufficient detail for others to replicate
+- **Decision-ready**: Conclusions and recommendations clearly stated
 
-See `references/workflow-exp-report.md` for details.
+See `references/workflow-report-gen.md` for detailed instructions.
 
 ## Project Context
 
