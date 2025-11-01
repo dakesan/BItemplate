@@ -1,170 +1,174 @@
-# Exp[EXP_NUMBER]: [TITLE]
+---
+date: [DATE_YYYY-MM-DD]
+tags: [labnote, bioinformatics, [TAG1]]
+status: in-progress
+author: [AUTHOR]
+---
 
-**Action required**: Fill in [EXP_NUMBER] (zero-padded, e.g., 01, 02), [TITLE], and [DATE] (YYYY-MM-DD format).
+# [DATE_YYYYMMDD]_[TITLE]
 
-Date: [DATE]
-
-## Configuration
-
-**Action required**: Fill in config file reference if applicable. Format: config/YYYYMMDD_Exp[NN]_[description].yaml
-
-Config: config/[DATE]_Exp[EXP_NUMBER]_[DESCRIPTION].yaml (optional)
-
-## Objective
-
-**Action required**: Briefly describe what you want to achieve and why (2-3 sentences).
-
-[OBJECTIVE]
-
-## Tools & Versions
-
-**Action required**: List all tools with exact versions. Add or remove lines as needed.
-
-- [TOOL1]: [VERSION]
-- [TOOL2]: [VERSION]
-
-## Data
-
-**Action required**: Specify exact input and output paths.
-
-- Input: [INPUT_PATH]
-- Output: results/Exp[EXP_NUMBER]_[DESCRIPTION]/
+>[!Todo] Background
+>
+>## 実験目的
+>
+>[OBJECTIVE]
+>
+>## 実験の背景
+>
+>[BACKGROUND]
+>
+>## 参考文献・関連実験
+>
+>- [[Related Research or Protocol]]
+>- [Additional references]
 
 ---
 
-## Trial 1 - [SUBTITLE]
+## 実験1: Exp01 ([PURPOSE])
 
-**Action required**: Replace [SUBTITLE] with a brief description of this trial (e.g., "Initial parameter exploration", "SAM-based pseudo-labeling").
+>[!Works] [EXPERIMENT_TYPE]
+>
+>### 実験情報
+>- **試験番号**: Exp01
+>- **実施日**: [EXPERIMENT_DATE]
+>- **作業者**: [AUTHOR]
+>- **目的**: [SPECIFIC_OBJECTIVE]
+>
+>### 実験設計
+>- [DESIGN_DETAIL_1]
+>- [DESIGN_DETAIL_2]
+>- [DESIGN_DETAIL_3]
+>
+>### 使用サンプル
+>
+>| Sample ID | サンプル種類 | 条件 | 本数 | 備考 |
+>|-----------|------------|------|------|------|
+>| [SAMPLE_ID] | [SAMPLE_TYPE] | [CONDITION] | [COUNT] | [NOTES] |
+>
+>### Methods
+>
+>#### [Step Title]
+>
+>**Why**: [Rationale for this approach]
+>
+>```bash
+>[COMMAND]
+>```
+>
+>**Parameters**:
+>- [PARAM1]: [VALUE] - [EXPLANATION]
+>- [PARAM2]: [VALUE] - [EXPLANATION]
 
-### Plan
+>[!Done] Results
+>
+>### Key Findings
+>
+>- [FINDING_1]
+>- [FINDING_2]
+>- [FINDING_3]
+>
+>**Key Figures**:
+>
+>![Figure 1: [DESCRIPTION]](results/[DATE_YYYYMMDD]_[TITLE]/exp01/[figure_name].png)
 
-**Action required**: Briefly outline approach for this trial (3-5 bullet points).
-
-- [STEP1]
-- [STEP2]
-- [STEP3]
-
-### Methods
-
-**Action required**: Document what you actually executed. Add or remove steps as needed. Do not write a whole python code here. All codes should be written in src or script directory. What should be noteed here is the running command to invoke those codes in src or sctript.
-
-#### Step 1: [ACTION]
-
-**Why**: [RATIONALE - why this approach was chosen or why it differs from plan]
-
-```bash
-[ACTUAL_COMMAND]
-```
-
-**Parameters**:
-- [PARAM1]: [VALUE] - [EXPLANATION]
-- [PARAM2]: [VALUE] - [EXPLANATION]
-
-#### Step 2: [ACTION]
-
-**Why**: [RATIONALE]
-
-```bash
-[ACTUAL_COMMAND]
-```
-
-**Parameters**:
-- [PARAM1]: [VALUE] - [EXPLANATION]
-
-### Results
-
-**Action required**: List key findings from this trial (3-5 bullet points). Focus on numbers and observations.
-
-- [FINDING1]
-- [FINDING2]
-- [FINDING3]
-
-**Key Figures**:
-
-![Figure 1: [DESCRIPTION]](results/Exp[EXP_NUMBER]_[DESCRIPTION]/trial1_[figure1.png])
-
-### Discussion
-
-#### Interpretation
-
-[How do you interpret the results? What worked? What didn't?]
-
-#### Problems & Limitations
-
-[What issues were encountered? What could be improved?]
-
-#### Next Steps
-
-- [NEXT_STEP1]
-- [NEXT_STEP2]
+>[!Important]
+>
+>### Observations
+>
+>- [OBSERVATION_OR_ISSUE_1]
+>- [OBSERVATION_OR_ISSUE_2]
+>
+>### Next Steps
+>
+>- [ ] [NEXT_STEP_1]
+>- [ ] [NEXT_STEP_2]
 
 ---
 
-## Trial 2 - [SUBTITLE]
+## 実験2: Exp02 ([PURPOSE])
 
-**Action required**: Copy the Trial template above for additional trials. Each trial should have its own Plan/Methods/Results/Discussion.
+>[!Works] [EXPERIMENT_TYPE]
+>
+>### 実験情報
+>- **試験番号**: Exp02
+>- **実施日**: [EXPERIMENT_DATE]
+>- **作業者**: [AUTHOR]
+>- **目的**: [SPECIFIC_OBJECTIVE]
+>
+>### 実験設計
+>- [DESIGN_DETAIL_1]
+>- [DESIGN_DETAIL_2]
 
-### Plan
-
-- [STEP1]
-- [STEP2]
-
-### Methods
-
-#### Step 1: [ACTION]
-
-**Why**: [RATIONALE]
-
-```bash
-[ACTUAL_COMMAND]
-```
-
-**Parameters**:
-- [PARAM1]: [VALUE]
-
-### Results
-
-- [FINDING1]
-- [FINDING2]
-
-### Discussion
-
-#### Interpretation
-
-[INTERPRETATION]
-
-#### Problems & Limitations
-
-[PROBLEMS]
-
-#### Next Steps
-
-- [NEXT_STEP1]
+>[!Done] Results
+>
+>### Key Findings
+>
+>- [FINDING_1]
+>- [FINDING_2]
 
 ---
 
-## Overall Summary
+## 総合結果サマリー (Overall Summary)
 
-**Action required**: Fill in after completing all trials. Summarize key learnings across trials.
+>[!Done] Integrated Results
+>
+>### [Analysis Section 1]
+>
+>- [INTEGRATED_FINDING_1]
+>- [INTEGRATED_FINDING_2]
+>
+>### [Analysis Section 2]
+>
+>- [COMPARISON_OR_TREND]
+>- [QUANTITATIVE_SUMMARY]
 
-### Key Findings
+## 総合的考察 (Discussion)
 
-- [OVERALL_FINDING1]
-- [OVERALL_FINDING2]
+### [Key Finding or Theme]
 
-### Conclusions
+[Interpretation of results across all experiments. What worked? What didn't? Why?]
 
-[What did you learn from this experiment? What approach works best?]
+### 技術的課題と制約
 
-### Recommended Next Experiment
+[Technical limitations, unexpected issues, areas for improvement]
 
-[What should Exp[NEXT_NUMBER] focus on?]
+### 生物学的意義
+
+[Biological interpretation and implications of findings]
+
+## Conclusions
+
+1. [MAIN_CONCLUSION_1]
+2. [MAIN_CONCLUSION_2]
+3. [MAIN_CONCLUSION_3]
+
+## Recommended Next Experiment
+
+[What should the next experiment focus on? What questions remain?]
+
+---
+
+## References
+
+### 元データファイル
+
+- `[PATH_TO_RAW_DATA_1]`
+- `[PATH_TO_RAW_DATA_2]`
+
+### プロトコル・試薬情報
+
+- [[Protocol Name]]
+- [[Reagent or Tool]]
+
+### ソフトウェア・ツール
+
+| Tool | Version | Purpose |
+|------|---------|---------|
+| [TOOL1] | [VERSION] | [PURPOSE] |
+| [TOOL2] | [VERSION] | [PURPOSE] |
 
 ---
 
 ## Notes
 
-**Action required**: Add any additional observations, unexpected findings, or technical details. This section is optional.
-
-[NOTES]
-
+[Any additional observations, unexpected findings, or technical details]
