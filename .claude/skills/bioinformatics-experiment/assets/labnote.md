@@ -1,174 +1,147 @@
 ---
-date: [DATE_YYYY-MM-DD]
-tags: [labnote, bioinformatics, [TAG1]]
+cdate: [DATE_YYYY-MM-DD]
+mdate: [DATE_YYYY-MM-DD]
+tags: [labnote, [TAG1]]
 status: in-progress
 author: [AUTHOR]
 ---
 
-# [DATE_YYYYMMDD]_[TITLE]
-
 >[!Todo] Background
+>- [BACKGROUND]
+>- 試験ID（ある場合）: [TRIAL_ID]
+>- 目的: [OBJECTIVE]
+
+>[!Works] Purpose
+>- [PURPOSE]
+>- [HYPOTHESIS]
+
+>[!Done] Results Summary
+>- 主要な実験結果のサマリー
+>- 重要な知見を箇条書きで記載
+>- 表やグラフを用いて結果を整理
 >
->## 実験目的
->
->[OBJECTIVE]
->
->## 実験の背景
->
->[BACKGROUND]
->
->## 参考文献・関連実験
->
->- [[Related Research or Protocol]]
->- [Additional references]
+>**主要な知見:**
+>1. 知見1
+>2. 知見2
+>3. 知見3
+
+>[!Important] Key Points
+>**技術的注意事項:**
+>- 実験上の重要なポイント
+>- プロトコルで特に注意すべき点
+>- 安全装備や装置設定の注意事項
+
+## Experimental Timeline
+
+実験の時系列を記載：
+
+| Exp | 実施日 | 実験名 | 主要な結果 |
+|-----|--------|--------|------------|
+| Exp1 | [DATE_YYYY-MM-DD] | [EXP_NAME] | 簡潔な結果 |
+| Exp2 | [DATE_YYYY-MM-DD] | [EXP_NAME] | 簡潔な結果 |
 
 ---
 
-## 実験1: Exp01 ([PURPOSE])
+## Exp1 ([DATE_YYYY-MM-DD]): [EXP_TITLE]
 
->[!Works] [EXPERIMENT_TYPE]
->
->### 実験情報
->- **試験番号**: Exp01
->- **実施日**: [EXPERIMENT_DATE]
->- **作業者**: [AUTHOR]
->- **目的**: [SPECIFIC_OBJECTIVE]
->
->### 実験設計
->- [DESIGN_DETAIL_1]
->- [DESIGN_DETAIL_2]
->- [DESIGN_DETAIL_3]
->
->### 使用サンプル
->
->| Sample ID | サンプル種類 | 条件 | 本数 | 備考 |
->|-----------|------------|------|------|------|
->| [SAMPLE_ID] | [SAMPLE_TYPE] | [CONDITION] | [COUNT] | [NOTES] |
->
->### Methods
->
->#### [Step Title]
->
->**Why**: [Rationale for this approach]
->
->```bash
->[COMMAND]
->```
->
->**Parameters**:
->- [PARAM1]: [VALUE] - [EXPLANATION]
->- [PARAM2]: [VALUE] - [EXPLANATION]
+### Purpose
+- [EXP_PURPOSE]
+- [HYPOTHESIS]
 
->[!Done] Results
->
->### Key Findings
->
->- [FINDING_1]
->- [FINDING_2]
->- [FINDING_3]
->
->**Key Figures**:
->
->![Figure 1: [DESCRIPTION]](results/[DATE_YYYYMMDD]_[TITLE]/exp01/[figure_name].png)
+### Materials
 
->[!Important]
->
->### Observations
->
->- [OBSERVATION_OR_ISSUE_1]
->- [OBSERVATION_OR_ISSUE_2]
->
->### Next Steps
->
->- [ ] [NEXT_STEP_1]
->- [ ] [NEXT_STEP_2]
+**使用プラスミド/細胞**
+- [PLASMID_1]
+- [PLASMID_2]
 
----
+**使用試薬**
+- [REAGENT_1]
+  - [COMPONENT_1]
+  - [COMPONENT_2]
+- [REAGENT_2]
 
-## 実験2: Exp02 ([PURPOSE])
+**使用装置**
+- [EQUIPMENT_1]
+- [EQUIPMENT_2]
 
->[!Works] [EXPERIMENT_TYPE]
->
->### 実験情報
->- **試験番号**: Exp02
->- **実施日**: [EXPERIMENT_DATE]
->- **作業者**: [AUTHOR]
->- **目的**: [SPECIFIC_OBJECTIVE]
->
->### 実験設計
->- [DESIGN_DETAIL_1]
->- [DESIGN_DETAIL_2]
+### Procedure
 
->[!Done] Results
->
->### Key Findings
->
->- [FINDING_1]
->- [FINDING_2]
+**準備作業**
+- [PREP_STEP_1]
+- [PREP_STEP_2]
+
+**実施内容**
+1. [STEP_1]
+2. [STEP_2]
+3. [STEP_3]
+
+### Results
+
+**測定結果（測定日時）**
+
+| サンプル | 測定値1 | 測定値2 | 測定値3 |
+|---------|---------|---------|---------|
+| Sample1 | value   | value   | value   |
+| Sample2 | value   | value   | value   |
+
+**観察事項:**
+- [OBSERVATION_1]
+- [OBSERVATION_2]
+
+### Discussion
+
+**結果の解釈:**
+- [INTERPRETATION_1]
+- [INTERPRETATION_2]
+
+**問題点と改善策:**
+- [PROBLEM_1] → [SOLUTION_1]
+- [PROBLEM_2] → [SOLUTION_2]
+
+**Next Steps:**
+- [NEXT_STEP_1]
+- [NEXT_STEP_2]
+
+**作業者**: [OPERATOR_1], [OPERATOR_2]
 
 ---
 
-## 総合結果サマリー (Overall Summary)
+## Exp2 ([DATE_YYYY-MM-DD]): [EXP_TITLE]
 
->[!Done] Integrated Results
->
->### [Analysis Section 1]
->
->- [INTEGRATED_FINDING_1]
->- [INTEGRATED_FINDING_2]
->
->### [Analysis Section 2]
->
->- [COMPARISON_OR_TREND]
->- [QUANTITATIVE_SUMMARY]
-
-## 総合的考察 (Discussion)
-
-### [Key Finding or Theme]
-
-[Interpretation of results across all experiments. What worked? What didn't? Why?]
-
-### 技術的課題と制約
-
-[Technical limitations, unexpected issues, areas for improvement]
-
-### 生物学的意義
-
-[Biological interpretation and implications of findings]
-
-## Conclusions
-
-1. [MAIN_CONCLUSION_1]
-2. [MAIN_CONCLUSION_2]
-3. [MAIN_CONCLUSION_3]
-
-## Recommended Next Experiment
-
-[What should the next experiment focus on? What questions remain?]
+（同様の構造で記載）
 
 ---
 
-## References
+## 総合考察と結論
 
-### 元データファイル
+### 主要な発見
 
-- `[PATH_TO_RAW_DATA_1]`
-- `[PATH_TO_RAW_DATA_2]`
+1. **[FINDING_1_TITLE]**
+   - [FINDING_1_DETAIL]
 
-### プロトコル・試薬情報
+2. **[FINDING_2_TITLE]**
+   - [FINDING_2_DETAIL]
 
-- [[Protocol Name]]
-- [[Reagent or Tool]]
+### 今後の方向性
 
-### ソフトウェア・ツール
+**最優先課題:**
+1. [PRIORITY_1]
+2. [PRIORITY_2]
 
-| Tool | Version | Purpose |
-|------|---------|---------|
-| [TOOL1] | [VERSION] | [PURPOSE] |
-| [TOOL2] | [VERSION] | [PURPOSE] |
+**短期的課題（1-3ヶ月）:**
+1. [SHORT_TERM_1]
+2. [SHORT_TERM_2]
 
----
+**中長期的展望（3ヶ月以上）:**
+1. [LONG_TERM_1]
+2. [LONG_TERM_2]
 
-## Notes
+### 最終推奨事項
 
-[Any additional observations, unexpected findings, or technical details]
+**現時点での推奨:**
+- [RECOMMENDATION_1]
+- [RECOMMENDATION_2]
+
+**避けるべき方法:**
+- [AVOID_1]
+- [AVOID_2]
