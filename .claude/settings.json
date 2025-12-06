@@ -1,0 +1,31 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(textlint:*)",
+      "Bash(git add:*)",
+      "Bash(git commit:*)",
+      "Bash(git push)",
+      "Bash(ls:*)",
+      "Bash(find:*)",
+      "Bash(cat:*)",
+      "Bash(head:*)",
+      "Bash(tail:*)",
+      "Bash(wc:*)",
+      "Bash(file:*)",
+      "Bash(tree:*)",
+      "Bash(du:*)",
+      "Bash(stat:*)",
+      "Read",
+      "Glob",
+      "Grep",
+      "Skill(skill-creator)",
+      "Skill(bioinformatics-experiment)",
+      "mcp__serena__get_*",
+      "mcp__serena__list_*",
+      "mcp__serena__find_*",
+      "mcp__serena__search_*"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}
