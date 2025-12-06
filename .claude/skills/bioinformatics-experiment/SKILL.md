@@ -9,8 +9,24 @@ Orchestrate hypothesis-driven bioinformatics research projects.
 
 ## First Action
 
-1. Read `STEERING.md` to understand current project status and priorities
-2. Read `notebook/tasks.md` for detailed experiment progress
+1. Read `STEERING.md` to get current Phase
+2. Read `notebook/tasks.md` for detailed task progress
+3. Determine next action based on Phase (see Phase Judgment below)
+
+## Phase Judgment
+
+Check `**Phase**` in STEERING.md and determine next action:
+
+| Phase | Condition | Next Action |
+|-------|-----------|-------------|
+| Project Setup | P01-P05 incomplete | Continue Project Setup flow |
+| Experiment Planning | No active experiment | Add new experiment |
+| Experiment Execution | E01-E06 complete, E07 pending | Execute experiment |
+| Analysis | E07 complete, E08-E10 pending | Record results & interpret |
+| Reporting | E10 complete, E11 pending | Create report |
+| Completed | All tasks done | Ask user for next direction |
+
+When Phase does not match actual task status, update STEERING.md Phase first.
 
 ## Role
 
@@ -112,17 +128,41 @@ Each experiment follows this exact task sequence.
 
 When STEERING.md shows "Project Setup" phase:
 
-Gather from user:
-- Project name
-- Research question
-- Observations that led to this
-- Hypotheses to test
-- Data overview (type, location, format)
+**Step 1: Request free input**
 
-Update files:
+Ask user:
+```
+研究について教えてください。
+どのようなデータがあり、何を明らかにしたいですか？
+```
+
+**Step 2: Extract information**
+
+From user's response, extract:
+
+| Task | Required Information | Extraction Target |
+|------|---------------------|-------------------|
+| P01 | Project name | Explicit name or derive from topic |
+| P02 | Research question | Main question or goal |
+| P03 | Background & observations | What led to this research, sources |
+| P04 | Hypotheses | Testable predictions |
+| P05 | Data overview | Type, location, format |
+
+**Step 3: Fill gaps**
+
+If any information is missing or unclear, ask follow-up questions:
+- P01 missing: "プロジェクト名は何にしますか？"
+- P02 unclear: "具体的に何を明らかにしたいですか？"
+- P03 missing: "この研究に至った背景・観察は何ですか？"
+- P04 missing: "検証したい仮説はありますか？"
+- P05 missing: "データの種類、場所、フォーマットを教えてください"
+
+**Step 4: Update files**
+
+Once all P01-P05 information gathered:
 - `README.md` - Fill in project information section
-- `STEERING.md` - Update status, add initial TODOs
-- `notebook/tasks.md` - Create initial task list
+- `STEERING.md` - Update Phase to "Experiment Planning", add TODOs
+- `notebook/tasks.md` - Mark P01-P05 as complete
 
 ### 2. Add New Experiment
 

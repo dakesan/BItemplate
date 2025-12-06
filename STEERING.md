@@ -5,13 +5,16 @@ Project navigation hub - current status, priorities, and links.
 ## Current Status
 
 **Phase**: Project Setup
+
+<!-- Phase options: Project Setup | Experiment Planning | Experiment Execution | Analysis | Reporting | Completed -->
+
 **Last Updated**:[YYYY-MM-DD]
 
 ### Progress Summary
 
-- [ ] Project initialized
-- [ ] Research question defined
-- [ ] First experiment planned
+- [ ] Project initialized (P01-P05)
+- [ ] First experiment planned (E01-E06)
+- [ ] First experiment executed (E07-E11)
 
 ## Priority TODO
 
