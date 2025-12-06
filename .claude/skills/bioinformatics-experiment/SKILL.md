@@ -48,11 +48,69 @@ Delegate individual experiment tasks to **subagents** via Task tool.
 └── data/raw/             # Input data (gitignored)
 ```
 
+## Task Sequences (Canonical)
+
+Use these exact task IDs and names in `notebook/tasks.md`.
+
+### Project Setup Tasks
+
+| ID | Task | Output | Validation Criteria |
+|----|------|--------|---------------------|
+| P01 | Define project name | README.md | Name filled in |
+| P02 | Define research question | README.md | Question stated |
+| P03 | Document background & observations | README.md | Sources cited |
+| P04 | List hypotheses to test | README.md | Testable hypotheses |
+| P05 | Document data overview | README.md | Type, location, format |
+
+### Experiment Tasks
+
+Each experiment follows this exact task sequence.
+
+| ID | Task | Labnote Section | Validation Criteria |
+|----|------|-----------------|---------------------|
+| E01 | Create labnote | - | File created from template |
+| E02 | Define observation | Background > Observation | Source cited, facts only |
+| E03 | Define hypothesis | Background > Hypothesis | Testable, rationale stated |
+| E04 | Define verification strategy | Background > Verification | True/False outcomes defined |
+| E05 | Document tools & data | Tools, Data | Versions, absolute paths |
+| E06 | Document methods | Methods | Each step has rationale |
+| E07 | Execute experiment | - | Commands run, outputs exist |
+| E08 | Record results | Results | Facts only, no interpretation |
+| E09 | Write interpretation | Interpretation | Alternatives & limitations included |
+| E10 | Write conclusion | Conclusion | Status: Supported/Refuted/Inconclusive |
+| E11 | Create report | - | Report file created |
+
+### Task Format in tasks.md
+
+```markdown
+## Project Setup
+
+- [ ] P01: Define project name → README.md
+- [ ] P02: Define research question → README.md
+- [ ] P03: Document background & observations → README.md
+- [ ] P04: List hypotheses to test → README.md
+- [ ] P05: Document data overview → README.md
+
+## Exp##: [description]
+
+- [ ] E01: Create labnote
+- [ ] E02: Define observation
+- [ ] E03: Define hypothesis
+- [ ] E04: Define verification strategy
+- [ ] E05: Document tools & data
+- [ ] E06: Document methods
+- [ ] E07: Execute experiment
+- [ ] E08: Record results
+- [ ] E09: Write interpretation
+- [ ] E10: Write conclusion
+- [ ] E11: Create report
+```
+
 ## Workflow
 
 ### 1. Project Setup
 
-To initialize a new project (when STEERING.md shows "Project Setup" phase):
+When STEERING.md shows "Project Setup" phase:
 
 Gather from user:
 - Project name
@@ -66,58 +124,77 @@ Update files:
 - `STEERING.md` - Update status, add initial TODOs
 - `notebook/tasks.md` - Create initial task list
 
-### 2. Experiment Planning
+### 2. Add New Experiment
 
-To plan a new experiment:
-- Ensure hypothesis is testable (clear true/false outcomes)
-- Define verification strategy
-- Identify required data and tools
+When adding a new experiment:
 
-Delegate to subagent:
+1. Add task block to `notebook/tasks.md` using canonical format above
+2. Add experiment entry to `STEERING.md` Experiments table
+3. Delegate E01 to subagent
 
+### 3. Execute Task
+
+For each task E01-E11:
+
+1. Mark task as in-progress in `notebook/tasks.md`
+2. Delegate to subagent using prompts below
+3. Validate output against criteria in task table
+4. Mark task as complete
+5. Update `STEERING.md` if status changed
+
+### Subagent Prompts
+
+E01 (Create labnote):
 ```
 Use Task tool with prompt:
-"Create experiment labnote for Exp##.
-Hypothesis: [hypothesis]
-Verification: [strategy]
-Data: [input path]
+"Create experiment labnote for Exp##: [description].
 Template: notebook/labnote/Exp00_TEMPLATE_labnote.md
-Output: notebook/labnote/Exp##_description.md"
+Output: notebook/labnote/Exp##_[description].md
+Only create the file from template. Do not fill in content yet."
 ```
 
-### 3. Experiment Execution
-
-To record progress, delegate to subagent:
-
+E02-E06 (Define sections):
 ```
 Use Task tool with prompt:
 "Update labnote notebook/labnote/Exp##_*.md
-Add: [method step / result / interpretation]
-Remember: Results = facts only, Interpretation = reasoning"
+Task: [E0X task name]
+Section: [target section from task table]
+Validation: [criteria from task table]
+Input from user: [relevant information]"
 ```
 
-### 4. Report Generation
+E07 (Execute experiment):
+```
+Use Task tool with prompt:
+"Execute experiment Exp##.
+Labnote: notebook/labnote/Exp##_*.md
+Follow Methods section. Record commands and outputs.
+Save results to: results/Exp##_[description]/"
+```
 
-To create report from completed experiment, delegate to subagent:
+E08-E10 (Record & conclude):
+```
+Use Task tool with prompt:
+"Update labnote notebook/labnote/Exp##_*.md
+Task: [E0X task name]
+Section: [target section]
+Validation: [criteria]
+Remember: Results = facts only, Interpretation = reasoning with alternatives"
+```
 
+E11 (Create report):
 ```
 Use Task tool with prompt:
 "Create report from notebook/labnote/Exp##_*.md
 Template: notebook/report/Exp00_TEMPLATE_report.md
-Output: notebook/report/Exp##_description.md
+Output: notebook/report/Exp##_[description].md
 Focus: What We Know vs What We Think"
 ```
 
-### 5. Progress Update
-
-After each subagent task:
-1. Update `notebook/tasks.md` with experiment-level progress
-2. Update `STEERING.md` if project status or priorities changed
-
-### 6. Knowledge Management
+### 4. Knowledge Management
 
 When creating reusable procedures:
-1. Save to `knowledge/` with appropriate prefix (workflow_, protocol_, reference_)
+1. Save to `knowledge/` with prefix (workflow_, protocol_, reference_)
 2. Add link to STEERING.md Quick Links section
 
 ## Quality Checklist

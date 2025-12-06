@@ -2,18 +2,22 @@
 
 ## Project Setup
 
-- [ ] Define project name → README.md
-- [ ] Define research question → README.md
-- [ ] Document background & observations → README.md
-- [ ] List hypotheses to test → README.md
-- [ ] Document data overview → README.md
+- [ ] P01: Define project name → README.md
+- [ ] P02: Define research question → README.md
+- [ ] P03: Document background & observations → README.md
+- [ ] P04: List hypotheses to test → README.md
+- [ ] P05: Document data overview → README.md
 
 ## Exp01: [description]
 
-- [ ] Plan experiment (hypothesis, verification strategy)
-- [ ] Create labnote → notebook/labnote/Exp01_*.md
-- [ ] Execute experiment
-- [ ] Record results (facts only) → labnote
-- [ ] Write interpretation → labnote
-- [ ] Conclude (hypothesis supported/refuted?) → labnote
-- [ ] Create report → notebook/report/Exp01_*.md
+- [ ] E01: Create labnote
+- [ ] E02: Define observation
+- [ ] E03: Define hypothesis
+- [ ] E04: Define verification strategy
+- [ ] E05: Document tools & data
+- [ ] E06: Document methods
+- [ ] E07: Execute experiment
+- [ ] E08: Record results
+- [ ] E09: Write interpretation
+- [ ] E10: Write conclusion
+- [ ] E11: Create report
