@@ -28,6 +28,7 @@ Always:
 ```
 ├── README.md         # Project overview (static)
 ├── STEERING.md       # Current status & navigation (dynamic)
+├── inbox/            # User input files (memos, meeting notes)
 ├── knowledge/        # Reusable procedures
 ├── notebook/
 │   ├── tasks.md      # Experiment progress

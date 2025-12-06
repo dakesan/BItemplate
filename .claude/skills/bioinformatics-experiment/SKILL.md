@@ -74,6 +74,7 @@ Load these as needed:
 ```
 ├── README.md             # Project overview
 ├── STEERING.md           # Current status & navigation
+├── inbox/                # User input files (memos, meeting notes)
 ├── knowledge/            # Reusable procedures
 │   ├── workflow_*.md
 │   └── protocol_*.md
@@ -85,6 +86,13 @@ Load these as needed:
 ├── results/Exp##_*/      # Output data (gitignored)
 └── data/raw/             # Input data (gitignored)
 ```
+
+### inbox/ の処理
+
+ユーザーが inbox/ にファイルを置いた場合:
+1. 内容を確認し、関連する情報を抽出
+2. 適切な場所に統合（labnote, knowledge, README など）
+3. 処理完了後、元ファイルの削除を提案
 
 ## Workflow Overview
 
