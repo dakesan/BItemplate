@@ -26,13 +26,16 @@ Always:
 ## Structure
 
 ```
-notebook/
-├── tasks.md     # Research progress
-├── labnote/     # Exp##_*.md
-├── report/      # Exp##_*.md
-└── analysis/    # Exp##_*.ipynb
-results/         # Outputs (gitignored)
-data/raw/        # Raw data (gitignored)
+├── README.md         # Project overview (static)
+├── STEERING.md       # Current status & navigation (dynamic)
+├── knowledge/        # Reusable procedures
+├── notebook/
+│   ├── tasks.md      # Experiment progress
+│   ├── labnote/      # Exp##_*.md
+│   ├── report/       # Exp##_*.md
+│   └── analysis/     # Exp##_*.ipynb
+├── results/          # Outputs (gitignored)
+└── data/raw/         # Raw data (gitignored)
 ```
 
 ## Commands
@@ -45,7 +48,8 @@ snakemake --use-conda -c90 # Pipeline
 
 ## Session Start
 
-1. Read `notebook/tasks.md`
-2. Use `bioinformatics-experiment` skill for all research tasks
+1. Read `STEERING.md` for current status and priorities
+2. Read `notebook/tasks.md` for experiment details
+3. Use `bioinformatics-experiment` skill for all research tasks
 
-Always use the skill except for trivial edits. Trigger with 「研究する」or "Start research".
+Always use the skill except for trivial edits. Trigger with「研究する」or "Start research".

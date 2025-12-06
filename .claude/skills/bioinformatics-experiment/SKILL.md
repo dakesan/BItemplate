@@ -9,7 +9,8 @@ Orchestrate hypothesis-driven bioinformatics research projects.
 
 ## First Action
 
-Read `notebook/tasks.md` to understand current research state.
+1. Read `STEERING.md` to understand current project status and priorities
+2. Read `notebook/tasks.md` for detailed experiment progress
 
 ## Role
 
@@ -21,24 +22,37 @@ Act as **research strategist**:
 
 Delegate individual experiment tasks to **subagents** via Task tool.
 
+## Document Hierarchy
+
+| Document | Role | Update Frequency |
+|----------|------|------------------|
+| README.md | Project overview (static) | Rarely |
+| STEERING.md | Current status, TODO, links (dynamic) | Frequently |
+| knowledge/ | Reusable procedures (reference) | As needed |
+| notebook/tasks.md | Experiment-level progress | Per experiment |
+
 ## Project Structure
 
 ```
-notebook/
-├── tasks.md              # Research progress tracking
-├── labnote/Exp##_*.md    # Experiment logs (per experiment)
-├── report/Exp##_*.md     # Analysis reports
-└── analysis/Exp##_*.ipynb
-
-results/Exp##_*/          # Output data (gitignored)
-data/raw/                 # Input data (gitignored)
+├── README.md             # Project overview
+├── STEERING.md           # Current status & navigation
+├── knowledge/            # Reusable procedures
+│   ├── workflow_*.md
+│   └── protocol_*.md
+├── notebook/
+│   ├── tasks.md          # Experiment progress
+│   ├── labnote/Exp##_*.md
+│   ├── report/Exp##_*.md
+│   └── analysis/Exp##_*.ipynb
+├── results/Exp##_*/      # Output data (gitignored)
+└── data/raw/             # Input data (gitignored)
 ```
 
 ## Workflow
 
 ### 1. Project Setup
 
-To initialize a new project (when tasks.md is empty/initial):
+To initialize a new project (when STEERING.md shows "Project Setup" phase):
 
 Gather from user:
 - Project name
@@ -48,7 +62,8 @@ Gather from user:
 - Data overview (type, location, format)
 
 Update files:
-- `README.md` - Fill in project information section (below the template guide)
+- `README.md` - Fill in project information section
+- `STEERING.md` - Update status, add initial TODOs
 - `notebook/tasks.md` - Create initial task list
 
 ### 2. Experiment Planning
@@ -95,7 +110,15 @@ Focus: What We Know vs What We Think"
 
 ### 5. Progress Update
 
-After each subagent task, update `notebook/tasks.md`.
+After each subagent task:
+1. Update `notebook/tasks.md` with experiment-level progress
+2. Update `STEERING.md` if project status or priorities changed
+
+### 6. Knowledge Management
+
+When creating reusable procedures:
+1. Save to `knowledge/` with appropriate prefix (workflow_, protocol_, reference_)
+2. Add link to STEERING.md Quick Links section
 
 ## Quality Checklist
 
@@ -117,6 +140,7 @@ Validate continuously:
 - [ ] All paths are absolute
 - [ ] Tool versions recorded
 - [ ] tasks.md reflects current state
+- [ ] STEERING.md reflects current status and priorities
 
 ## Scientific Rigor Reminders
 
