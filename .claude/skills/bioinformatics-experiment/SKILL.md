@@ -66,7 +66,7 @@ Load these as needed:
 |----------|------|------------------|
 | README.md | Project overview (static) | Rarely |
 | STEERING.md | Current status, TODO, links (dynamic) | Frequently |
-| knowledge/ | Reusable procedures (reference) | As needed |
+| notebook/knowledge/ | Reusable procedures (reference) | As needed |
 | notebook/tasks.md | Experiment-level progress | Per experiment |
 
 ## Project Structure
@@ -75,11 +75,9 @@ Load these as needed:
 ├── README.md             # Project overview
 ├── STEERING.md           # Current status & navigation
 ├── inbox/                # User input files (memos, meeting notes)
-├── knowledge/            # Reusable procedures
-│   ├── workflow_*.md
-│   └── protocol_*.md
 ├── notebook/
 │   ├── tasks.md          # Experiment progress
+│   ├── knowledge/        # Reusable procedures
 │   ├── labnote/Exp##_*.md
 │   ├── report/Exp##_*.md
 │   └── analysis/Exp##_*.ipynb
@@ -156,5 +154,5 @@ Load `references/prompts.md` for report section mapping.
 ### 7. Knowledge Management
 
 When creating reusable procedures:
-1. Save to `knowledge/` with prefix (workflow_, protocol_, reference_)
+1. Save to `notebook/knowledge/` with prefix (workflow_, protocol_, reference_)
 2. Add link to STEERING.md Quick Links section

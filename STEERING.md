@@ -32,8 +32,8 @@ Project navigation hub - current status, priorities, and links.
 
 | Document | Description |
 |----------|-------------|
-| [Workflow: Cloning](knowledge/workflow_cloning.md) | Cloning experiment protocol |
-| [Workflow: Cell Culture](knowledge/workflow_cell.md) | Cell culture procedures |
+| [Workflow: Cloning](notebook/knowledge/workflow_cloning.md) | Cloning experiment protocol |
+| [Workflow: Cell Culture](notebook/knowledge/workflow_cell.md) | Cell culture procedures |
 
 ### Experiments
 

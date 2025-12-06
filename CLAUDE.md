@@ -29,9 +29,9 @@ Always:
 ├── README.md         # Project overview (static)
 ├── STEERING.md       # Current status & navigation (dynamic)
 ├── inbox/            # User input files (memos, meeting notes)
-├── knowledge/        # Reusable procedures
 ├── notebook/
 │   ├── tasks.md      # Experiment progress
+│   ├── knowledge/    # Reusable procedures
 │   ├── labnote/      # Exp##_*.md
 │   ├── report/       # Exp##_*.md
 │   └── analysis/     # Exp##_*.ipynb
