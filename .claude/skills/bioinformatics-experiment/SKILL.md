@@ -342,14 +342,43 @@ Summarize: What we now know, what remains unknown, next steps"
 
 After E10 complete:
 
+**Section mapping from labnote to report:**
+
+| Report Section | Labnote Source | Validation Criteria |
+|----------------|----------------|---------------------|
+| Executive Summary | Conclusion | 3-5 sentences: question, finding, meaning |
+| Background | Observation, Hypothesis | Research question & hypotheses listed |
+| Methods Summary | Tools, Data, Methods | Pipeline overview with tool versions |
+| Results | Results | Organized by finding, not by experiment |
+| Synthesis | Interpretation, Conclusion | What We Know vs What We Think separated |
+| Limitations | Interpretation > Limitations | Technical & interpretive limitations |
+| Conclusions | Conclusion | Each conclusion references evidence |
+| Future Directions | Conclusion > Next steps | Prioritized with rationale |
+
 ```
 Delegate to subagent:
 "Create report from notebook/labnote/Exp##_[description].md
 Template: notebook/report/Exp00_TEMPLATE_report.md
 Output: notebook/report/Exp##_[description].md
-Focus: What We Know vs What We Think"
+
+Requirements:
+1. Fill all TODO placeholders from labnote content
+2. Organize Results by finding (not experiment order)
+3. Separate facts (What We Know) from interpretation (What We Think)
+4. Include confidence levels for each interpretation
+5. Reference specific evidence for each conclusion"
 ```
-→ Validate: Report file created
+
+**Validation checklist:**
+- [ ] All TODO placeholders filled
+- [ ] Executive Summary is 3-5 sentences
+- [ ] Results organized by finding
+- [ ] What We Know contains only facts
+- [ ] What We Think contains interpretations with reasoning
+- [ ] Each conclusion references evidence
+- [ ] Future Directions are prioritized
+
+→ If validation fails: identify missing sections, re-delegate with specific instructions
 → Mark E11 complete
 → Update STEERING.md Experiments table (Status: Complete)
 → Update Phase to "Experiment Planning" (ready for next experiment)
