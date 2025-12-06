@@ -216,66 +216,160 @@ Once information gathered:
 4. Update STEERING.md Phase to "Experiment Execution"
 5. Delegate E01 to subagent, then continue E02-E06 with extracted information
 
-### 3. Execute Task
+### 3. Execute E01-E06 (Experiment Setup)
 
-For each task E01-E11:
+After Add New Experiment flow, execute E01-E06 sequentially:
 
-1. Mark task as in-progress in `notebook/tasks.md`
-2. Delegate to subagent using prompts below
-3. Validate output against criteria in task table
-4. Mark task as complete
-5. Update `STEERING.md` if status changed
-
-### Subagent Prompts
-
-E01 (Create labnote):
+**E01: Create labnote**
 ```
-Use Task tool with prompt:
+Delegate to subagent:
 "Create experiment labnote for Exp##: [description].
 Template: notebook/labnote/Exp00_TEMPLATE_labnote.md
 Output: notebook/labnote/Exp##_[description].md
 Only create the file from template. Do not fill in content yet."
 ```
+→ Validate: File exists
+→ Mark E01 complete
 
-E02-E06 (Define sections):
+**E02-E04: Fill from extracted info**
+
+Use information gathered in Add New Experiment Step 2:
+
+| Task | Input Source | Subagent Prompt |
+|------|--------------|-----------------|
+| E02 | observation | "Update Background > Observation section with: [observation]" |
+| E03 | hypothesis | "Update Background > Hypothesis section with: [hypothesis]" |
+| E04 | verification | "Update Background > Verification section with: [verification]" |
+
+For each E02-E04:
 ```
-Use Task tool with prompt:
-"Update labnote notebook/labnote/Exp##_*.md
-Task: [E0X task name]
-Section: [target section from task table]
-Validation: [criteria from task table]
-Input from user: [relevant information]"
+Delegate to subagent:
+"Update labnote notebook/labnote/Exp##_[description].md
+Task: [task name]
+Section: [target section]
+Content: [extracted info]
+Validation: [criteria from task table]"
+```
+→ Validate against criteria
+→ If validation fails: show issue to user, ask for correction, re-delegate
+→ Mark complete
+
+**E05: Document tools & data**
+
+Ask user:
+```
+使用するツールとデータについて教えてください。
+- ツール名とバージョン
+- 入力データのパス
 ```
 
-E07 (Execute experiment):
+Delegate to subagent with user input
+→ Validate: Versions and absolute paths present
+→ Mark E05 complete
+
+**E06: Document methods**
+
+Ask user:
 ```
-Use Task tool with prompt:
+実験手順を教えてください。
+各ステップで何をするか、なぜそうするかを含めてください。
+```
+
+Delegate to subagent with user input
+→ Validate: Each step has rationale
+→ Mark E06 complete
+
+**After E06 complete**: Ready for E07. Confirm with user before execution.
+
+### 4. Execute E07 (Run Experiment)
+
+When E01-E06 complete and user confirms:
+
+```
+Delegate to subagent:
 "Execute experiment Exp##.
-Labnote: notebook/labnote/Exp##_*.md
-Follow Methods section. Record commands and outputs.
+Labnote: notebook/labnote/Exp##_[description].md
+Follow Methods section exactly. Record all commands and outputs.
 Save results to: results/Exp##_[description]/"
 ```
+→ Validate: Commands run, output files exist
+→ Mark E07 complete
+→ Update Phase to "Analysis"
 
-E08-E10 (Record & conclude):
-```
-Use Task tool with prompt:
-"Update labnote notebook/labnote/Exp##_*.md
-Task: [E0X task name]
-Section: [target section]
-Validation: [criteria]
-Remember: Results = facts only, Interpretation = reasoning with alternatives"
-```
+### 5. Execute E08-E10 (Analysis)
 
-E11 (Create report):
+After E07 complete:
+
+**E08: Record results**
 ```
-Use Task tool with prompt:
-"Create report from notebook/labnote/Exp##_*.md
+Delegate to subagent:
+"Update Results section in notebook/labnote/Exp##_[description].md
+Based on outputs in results/Exp##_[description]/
+Record facts only: numbers, observations, figure paths
+Do NOT include interpretation"
+```
+→ Validate: Facts only, no interpretation words
+→ Mark E08 complete
+
+**E09: Write interpretation**
+
+Ask user for their interpretation, or let subagent draft:
+```
+Delegate to subagent:
+"Update Interpretation section in notebook/labnote/Exp##_[description].md
+Based on Results section, write:
+- What the results suggest
+- Supporting evidence
+- Alternative explanations
+- Limitations"
+```
+→ Validate: Alternatives and limitations included
+→ Show to user for review
+→ Mark E09 complete
+
+**E10: Write conclusion**
+```
+Delegate to subagent:
+"Update Conclusion section in notebook/labnote/Exp##_[description].md
+Determine hypothesis status: Supported / Refuted / Inconclusive
+Summarize: What we now know, what remains unknown, next steps"
+```
+→ Validate: Status determined with evidence
+→ Mark E10 complete
+→ Update Phase to "Reporting"
+
+### 6. Execute E11 (Create Report)
+
+After E10 complete:
+
+```
+Delegate to subagent:
+"Create report from notebook/labnote/Exp##_[description].md
 Template: notebook/report/Exp00_TEMPLATE_report.md
 Output: notebook/report/Exp##_[description].md
 Focus: What We Know vs What We Think"
 ```
+→ Validate: Report file created
+→ Mark E11 complete
+→ Update STEERING.md Experiments table (Status: Complete)
+→ Update Phase to "Experiment Planning" (ready for next experiment)
 
-### 4. Knowledge Management
+### 7. Validation Failure Handling
+
+When subagent output fails validation:
+
+1. Identify specific validation criteria that failed
+2. Show user the issue:
+   ```
+   E0X の検証に失敗しました。
+   問題: [specific issue]
+   修正が必要な内容: [what needs to change]
+   ```
+3. Ask user for correction or additional input
+4. Re-delegate to subagent with corrected input
+5. Re-validate
+
+### 8. Knowledge Management
 
 When creating reusable procedures:
 1. Save to `knowledge/` with prefix (workflow_, protocol_, reference_)
