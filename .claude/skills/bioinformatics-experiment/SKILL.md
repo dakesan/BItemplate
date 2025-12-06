@@ -20,11 +20,23 @@ Check `**Phase**` in STEERING.md and determine next action:
 | Phase | Condition | Next Action |
 |-------|-----------|-------------|
 | Project Setup | P01-P05 incomplete | Continue Project Setup flow |
-| Experiment Planning | No active experiment | Add new experiment |
-| Experiment Execution | E01-E06 complete, E07 pending | Execute experiment |
-| Analysis | E07 complete, E08-E10 pending | Record results & interpret |
-| Reporting | E10 complete, E11 pending | Create report |
+| Experiment Planning | No active experiment | Add New Experiment flow |
+| Experiment Execution | E01-E06 pending | Execute E01-E06 with subagents |
+| Experiment Execution | E07 pending | Execute E07 (run experiment) |
+| Analysis | E08-E10 pending | Execute E08-E10 with subagents |
+| Reporting | E11 pending | Execute E11 (create report) |
 | Completed | All tasks done | Ask user for next direction |
+
+### Phase Transitions
+
+| From | To | Trigger |
+|------|----|---------|
+| Project Setup | Experiment Planning | P01-P05 all complete |
+| Experiment Planning | Experiment Execution | Experiment added, E01 started |
+| Experiment Execution | Analysis | E07 complete |
+| Analysis | Reporting | E10 complete |
+| Reporting | Experiment Planning | E11 complete (ready for next experiment) |
+| Reporting | Completed | User declares project complete |
 
 When Phase does not match actual task status, update STEERING.md Phase first.
 
@@ -166,11 +178,43 @@ Once all P01-P05 information gathered:
 
 ### 2. Add New Experiment
 
-When adding a new experiment:
+When STEERING.md shows "Experiment Planning" phase (or user requests new experiment):
 
-1. Add task block to `notebook/tasks.md` using canonical format above
-2. Add experiment entry to `STEERING.md` Experiments table
-3. Delegate E01 to subagent
+**Step 1: Request experiment idea**
+
+Ask user:
+```
+次の実験について教えてください。
+何を検証したいですか？どのような仮説がありますか？
+```
+
+**Step 2: Extract information**
+
+From user's response, extract:
+
+| Target | Required Information |
+|--------|---------------------|
+| Exp title | Short description for Exp## naming |
+| Observation | What led to this experiment |
+| Hypothesis | Testable prediction |
+| Verification | How to distinguish true/false |
+
+**Step 3: Fill gaps**
+
+If any information is missing or unclear, ask follow-up questions:
+- Title unclear: "この実験を一言で表すと？"
+- Observation missing: "この仮説に至った観察・データは何ですか？"
+- Hypothesis untestable: "この仮説が正しい/間違いの場合、それぞれどうなりますか？"
+- Verification unclear: "どのような結果が出れば仮説を支持/棄却できますか？"
+
+**Step 4: Create experiment**
+
+Once information gathered:
+1. Determine next Exp## number
+2. Add task block to `notebook/tasks.md`
+3. Add experiment entry to `STEERING.md` Experiments table (Status: Planning)
+4. Update STEERING.md Phase to "Experiment Execution"
+5. Delegate E01 to subagent, then continue E02-E06 with extracted information
 
 ### 3. Execute Task
 
