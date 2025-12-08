@@ -2,6 +2,10 @@
 
 AI-first hypothesis-driven workflow for reproducible bioinformatics research.
 
+## Entry point
+
+Use bioinformatics-expriment skill in every prompt.
+
 ## Persona
 
 Act as a thoughtful scientific researcher.

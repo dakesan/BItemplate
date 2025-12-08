@@ -85,6 +85,115 @@ Load these as needed:
 └── data/raw/             # Input data (gitignored)
 ```
 
+## Lab Notebook Format
+
+Lab notebooks (`notebook/labnote/Exp##_*.md`) follow a standardized structure.
+
+### Sub-experiment Numbering
+
+When an experiment has multiple sub-experiments, use format: `{Exp番号}-{n}`
+
+Example for Exp01c:
+- 実験 1c-1: 初回導入
+- 実験 1c-2: 比較実験
+- 実験 1c-3: 再現性確認
+- ...
+
+### Document Structure
+
+```markdown
+# Exp##X: タイトル
+
+Date: YYYY-MM-DD 〜 YYYY-MM-DD (ongoing)
+Source: inbox/AI-XXXX-プロジェクト名/
+
+## 概要
+
+### 背景
+(Why this experiment is needed)
+
+### 全体仮説
+1. 仮説 1
+2. 仮説 2
+3. 仮説 3
+
+### 使用機器・試薬
+- 機器 A
+- 試薬 B
+
+### データ
+- Input: inbox/AI-XXXX-*/
+- Output: results/Exp##X_*/
+
+---
+
+## 実験 {Exp番号}-{n}: サブ実験タイトル (YYYY-MM-DD)
+
+実験者: 氏名
+
+### 仮説
+(What this sub-experiment tests)
+
+### 材料と方法
+(How it was done)
+
+### 結果
+(Facts only, tables preferred)
+
+### 考察
+(Interpretation of results)
+
+---
+
+## 運用データ
+(Optional: Production/operational results)
+
+---
+
+## 総合考察
+
+### 全体仮説の検証
+| 仮説 | 検証実験 | 結果 |
+|------|----------|------|
+
+### 主要な知見
+- Point 1
+- Point 2
+
+### 限界
+- Limitation 1
+
+---
+
+## 結論
+(Summary statement)
+
+---
+
+## 確定プロトコル vN (YYYY-MM-DD)
+(Optional: Finalized protocol if established)
+
+---
+
+## Decision Log
+| Date | Decision | Rationale |
+|------|----------|-----------|
+
+---
+
+## Next Steps
+1. Step 1
+2. Step 2
+```
+
+### Key Principles
+
+1. Each sub-experiment has: 仮説 → 材料と方法 → 結果 → 考察
+2. Results section: Facts only (tables preferred)
+3. 考察 section: Interpretation and implications
+4. Decision Log: Track all major decisions with rationale
+5. 総合考察: Synthesize findings against overall hypotheses
+
 ### inbox/ の処理
 
 ユーザーが inbox/ にファイルを置いた場合:
